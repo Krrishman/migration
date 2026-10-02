@@ -90,6 +90,12 @@ The Rust suite (83 tests) runs the real engines against the fixture PCs. It cove
 
 ## Building the portable release
 
+From Linux (cross-compile, no Windows machine needed):
+
+```bash
+./scripts/build-windows-cross.sh   # -> dist-portable/MigrationAssistant-<version>-win-x64.zip (exe + WebView2Loader.dll)
+```
+
 On Windows (x64):
 
 ```powershell
