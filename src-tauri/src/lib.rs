@@ -13,6 +13,7 @@ pub mod models;
 pub mod platform;
 pub mod progress;
 pub mod reporting;
+pub mod restore;
 pub mod security;
 pub mod util;
 pub mod windows;

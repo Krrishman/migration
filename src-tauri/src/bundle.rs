@@ -242,3 +242,48 @@ pub fn verify_bundle(layout: &BundleLayout, manifest: &Manifest, full: bool, can
     v.ok = v.mismatches.is_empty() && v.missing.is_empty() && v.errors.is_empty();
     Ok(v)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const SAMPLE: &str = include_str!("../../SAMPLE_MANIFEST.json");
+
+    #[test]
+    fn sample_manifest_matches_schema() {
+        let m = parse_manifest(SAMPLE.as_bytes()).unwrap();
+        assert_eq!(m.schema_version, SCHEMA_VERSION);
+        assert!(!m.items.is_empty());
+        // Round-trips without loss of required fields.
+        let again = parse_manifest(&serde_json::to_vec(&m).unwrap()).unwrap();
+        assert_eq!(again.items.len(), m.items.len());
+    }
+
+    #[test]
+    fn manifest_never_contains_secret_fields() {
+        let v: serde_json::Value = serde_json::from_str(SAMPLE).unwrap();
+        fn keys(v: &serde_json::Value, out: &mut Vec<String>) {
+            match v {
+                serde_json::Value::Object(o) => {
+                    for (k, x) in o {
+                        out.push(k.to_lowercase());
+                        keys(x, out);
+                    }
+                }
+                serde_json::Value::Array(a) => a.iter().for_each(|x| keys(x, out)),
+                _ => {}
+            }
+        }
+        let mut k = vec![];
+        keys(&v, &mut k);
+        for banned in ["password", "passphrase", "token", "cookie", "secret", "private_key", "key"] {
+            assert!(!k.iter().any(|x| x == banned), "manifest has a '{banned}' field");
+        }
+    }
+
+    #[test]
+    fn bundle_dir_name_format() {
+        let t = chrono::TimeZone::with_ymd_and_hms(&chrono::Local, 2024, 6, 3, 14, 5, 9).unwrap();
+        assert_eq!(bundle_dir_name("ACCT PC/07", t, "543b9071-aaaa-bbbb-cccc-000000000000"), "ACCT_PC_07-2024-06-03_140509-543b9071");
+    }
+}
