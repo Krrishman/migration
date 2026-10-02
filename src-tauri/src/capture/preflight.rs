@@ -86,11 +86,7 @@ pub fn run_preflight(platform: &dyn Platform, scan: &ScanResult, req: &CaptureRe
     };
     if let Some(d) = &dest_space {
         if !sufficient {
-            blocking.push(format!(
-                "Not enough free space on the destination: about {} needed, {} available.",
-                format_bytes(need),
-                format_bytes(d.free_bytes)
-            ));
+            blocking.push(format!("Not enough free space on the destination: about {} needed, {} available.", format_bytes(need), format_bytes(d.free_bytes)));
         } else if d.free_bytes < need + need / 5 {
             warnings.push(Warning::warn(WarningCode::LowDiskSpace, "Destination free space is tight; the capture may fail if files grow during copy."));
         }
@@ -103,11 +99,17 @@ pub fn run_preflight(platform: &dyn Platform, scan: &ScanResult, req: &CaptureRe
 
     let fs = platform.file_system_of(dest);
     if fs.as_deref().is_some_and(|f| f.eq_ignore_ascii_case("fat32") || f.eq_ignore_ascii_case("vfat") || f.eq_ignore_ascii_case("fat")) {
-        warnings.push(Warning::warn(WarningCode::LargeItem, "The destination uses FAT32: files of 4 GB or more cannot be stored and will be skipped. NTFS or exFAT is recommended."));
+        warnings.push(Warning::warn(
+            WarningCode::LargeItem,
+            "The destination uses FAT32: files of 4 GB or more cannot be stored and will be skipped. NTFS or exFAT is recommended.",
+        ));
     }
     let long_paths = platform.long_paths_enabled();
     if long_paths == Some(false) {
-        warnings.push(Warning::info(WarningCode::LongPath, "Long path support is disabled in Windows. Migration Assistant still copies long paths, but Explorer may not open them."));
+        warnings.push(Warning::info(
+            WarningCode::LongPath,
+            "Long path support is disabled in Windows. Migration Assistant still copies long paths, but Explorer may not open them.",
+        ));
     }
 
     // Running applications that hold relevant files open.
@@ -126,11 +128,8 @@ pub fn run_preflight(platform: &dyn Platform, scan: &ScanResult, req: &CaptureRe
         watch.extend(STICKY_NOTES_PROCESSES.iter().map(|n| (*n, "Sticky Notes".to_string())));
     }
     let processes = platform.running_processes();
-    let mut running_apps: Vec<String> = watch
-        .iter()
-        .filter(|(n, _)| processes.iter().any(|p| p.name.eq_ignore_ascii_case(n)))
-        .map(|(_, label)| label.clone())
-        .collect();
+    let mut running_apps: Vec<String> =
+        watch.iter().filter(|(n, _)| processes.iter().any(|p| p.name.eq_ignore_ascii_case(n))).map(|(_, label)| label.clone()).collect();
     running_apps.sort();
     running_apps.dedup();
     for app in &running_apps {
@@ -140,7 +139,10 @@ pub fn run_preflight(platform: &dyn Platform, scan: &ScanResult, req: &CaptureRe
         ));
     }
     if selected.iter().any(|i| i.warnings.iter().any(|w| w.code == WarningCode::EfsEncrypted)) && !req.encryption.enabled {
-        warnings.push(Warning::warn(WarningCode::EfsEncrypted, "EFS-encrypted files will be stored without EFS protection in the bundle. Enable bundle encryption to keep them protected at rest."));
+        warnings.push(Warning::warn(
+            WarningCode::EfsEncrypted,
+            "EFS-encrypted files will be stored without EFS protection in the bundle. Enable bundle encryption to keep them protected at rest.",
+        ));
     }
 
     PreflightReport {

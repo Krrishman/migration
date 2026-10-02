@@ -24,7 +24,12 @@ pub fn cancel_capture(state: SessionState<'_>) -> bool {
 }
 
 #[tauri::command]
-pub async fn resume_capture(app: tauri::AppHandle, state: SessionState<'_>, bundle_path: String, passphrase: Option<String>) -> Result<CaptureSummary, AppError> {
+pub async fn resume_capture(
+    app: tauri::AppHandle,
+    state: SessionState<'_>,
+    bundle_path: String,
+    passphrase: Option<String>,
+) -> Result<CaptureSummary, AppError> {
     let s = state.inner().clone();
     let sink = Arc::new(TauriSink { app, channel: "capture" });
     blocking(move || s.resume_capture(&bundle_path, passphrase.as_deref(), sink)).await

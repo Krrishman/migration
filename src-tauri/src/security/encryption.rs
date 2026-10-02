@@ -63,13 +63,7 @@ pub fn validate_passphrase(passphrase: &str, confirmation: &str) -> AppResult<()
 pub fn new_kdf_params() -> KdfParams {
     let mut salt = [0u8; 16];
     rand::rngs::OsRng.fill_bytes(&mut salt);
-    KdfParams {
-        algorithm: KDF_ALGORITHM.into(),
-        salt: hex::encode(salt),
-        memory_kib: 64 * 1024,
-        iterations: 3,
-        parallelism: 1,
-    }
+    KdfParams { algorithm: KDF_ALGORITHM.into(), salt: hex::encode(salt), memory_kib: 64 * 1024, iterations: 3, parallelism: 1 }
 }
 
 pub fn derive_key(passphrase: &str, params: &KdfParams) -> AppResult<BundleKey> {
@@ -91,9 +85,7 @@ pub fn derive_key(passphrase: &str, params: &KdfParams) -> AppResult<BundleKey> 
             .map_err(|e| AppError::Crypto(format!("invalid KDF parameters: {e}")))?,
     );
     let mut out = Zeroizing::new([0u8; 32]);
-    argon
-        .hash_password_into(passphrase.as_bytes(), &salt, out.as_mut())
-        .map_err(|e| AppError::Crypto(format!("key derivation failed: {e}")))?;
+    argon.hash_password_into(passphrase.as_bytes(), &salt, out.as_mut()).map_err(|e| AppError::Crypto(format!("key derivation failed: {e}")))?;
     Ok(BundleKey(out))
 }
 
@@ -103,9 +95,7 @@ pub fn make_key_check(key: &BundleKey) -> AppResult<String> {
     let cipher = Aes256Gcm::new(GenericArray::from_slice(key.0.as_ref()));
     let mut nonce = [0u8; 12];
     rand::rngs::OsRng.fill_bytes(&mut nonce);
-    let ct = cipher
-        .encrypt(Nonce::from_slice(&nonce), KEY_CHECK_PLAINTEXT)
-        .map_err(|_| AppError::Crypto("key check encryption failed".into()))?;
+    let ct = cipher.encrypt(Nonce::from_slice(&nonce), KEY_CHECK_PLAINTEXT).map_err(|_| AppError::Crypto("key check encryption failed".into()))?;
     let mut out = nonce.to_vec();
     out.extend(ct);
     Ok(hex::encode(out))
@@ -126,13 +116,7 @@ pub fn setup_bundle_encryption(passphrase: &str) -> AppResult<(EncryptionMetadat
     let key = derive_key(passphrase, &kdf)?;
     let check = make_key_check(&key)?;
     Ok((
-        EncryptionMetadata {
-            enabled: true,
-            algorithm: Some(ALGORITHM.into()),
-            kdf: Some(kdf),
-            key_check: Some(check),
-            chunk_size: Some(CHUNK_SIZE as u32),
-        },
+        EncryptionMetadata { enabled: true, algorithm: Some(ALGORITHM.into()), kdf: Some(kdf), key_check: Some(check), chunk_size: Some(CHUNK_SIZE as u32) },
         key,
     ))
 }
@@ -173,12 +157,7 @@ fn io(e: std::io::Error) -> AppError {
 
 /// Encrypt `reader` into `writer`. `on_plain` sees each plaintext chunk (used
 /// to hash the original content in the same pass). Returns bytes written.
-pub fn encrypt_stream<R: Read, W: Write>(
-    key: &BundleKey,
-    mut reader: R,
-    mut writer: W,
-    mut on_plain: impl FnMut(&[u8]),
-) -> AppResult<u64> {
+pub fn encrypt_stream<R: Read, W: Write>(key: &BundleKey, mut reader: R, mut writer: W, mut on_plain: impl FnMut(&[u8])) -> AppResult<u64> {
     let mut file_salt = [0u8; FILE_SALT_LEN];
     let mut nonce = [0u8; NONCE_PREFIX_LEN];
     rand::rngs::OsRng.fill_bytes(&mut file_salt);
@@ -215,12 +194,7 @@ pub fn encrypt_stream<R: Read, W: Write>(
 /// Decrypt a stream produced by [`encrypt_stream`]. Any tampering, truncation
 /// or wrong key yields an error; partial plaintext must then be discarded by
 /// the caller (restore writes to a temp file and only renames on success).
-pub fn decrypt_stream<R: Read, W: Write>(
-    key: &BundleKey,
-    mut reader: R,
-    mut writer: W,
-    mut on_plain: impl FnMut(&[u8]),
-) -> AppResult<u64> {
+pub fn decrypt_stream<R: Read, W: Write>(key: &BundleKey, mut reader: R, mut writer: W, mut on_plain: impl FnMut(&[u8])) -> AppResult<u64> {
     let mut header = [0u8; 8 + FILE_SALT_LEN + NONCE_PREFIX_LEN];
     if read_full(&mut reader, &mut header).map_err(io)? != header.len() || &header[..8] != MAGIC {
         return Err(AppError::Crypto("not a Migration Assistant encrypted file".into()));
@@ -239,11 +213,13 @@ pub fn decrypt_stream<R: Read, W: Write>(
         let pt = if next_len == 0 {
             dec.take()
                 .expect("decryptor consumed only once")
-                .decrypt_last(&cur[..cur_len]).map_err(|_| AppError::Crypto("authentication failed (wrong key, corrupted or truncated file)".into()))?
+                .decrypt_last(&cur[..cur_len])
+                .map_err(|_| AppError::Crypto("authentication failed (wrong key, corrupted or truncated file)".into()))?
         } else {
             dec.as_mut()
                 .expect("decryptor present until last chunk")
-                .decrypt_next(&cur[..cur_len]).map_err(|_| AppError::Crypto("authentication failed (wrong key or corrupted file)".into()))?
+                .decrypt_next(&cur[..cur_len])
+                .map_err(|_| AppError::Crypto("authentication failed (wrong key or corrupted file)".into()))?
         };
         on_plain(&pt);
         writer.write_all(&pt).map_err(io)?;
@@ -270,7 +246,13 @@ mod tests {
         let key = derive_key(pass, &kdf).unwrap();
         let check = make_key_check(&key).unwrap();
         (
-            EncryptionMetadata { enabled: true, algorithm: Some(ALGORITHM.into()), kdf: Some(kdf), key_check: Some(check), chunk_size: Some(CHUNK_SIZE as u32) },
+            EncryptionMetadata {
+                enabled: true,
+                algorithm: Some(ALGORITHM.into()),
+                kdf: Some(kdf),
+                key_check: Some(check),
+                chunk_size: Some(CHUNK_SIZE as u32),
+            },
             key,
         )
     }

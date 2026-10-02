@@ -33,10 +33,8 @@ pub fn drives() -> Vec<DriveInfo> {
 
 pub fn network_adapters() -> Vec<NetworkAdapterInfo> {
     let nets = Networks::new_with_refreshed_list();
-    let mut v: Vec<NetworkAdapterInfo> = nets
-        .iter()
-        .map(|(name, data)| NetworkAdapterInfo { name: name.clone(), mac_address: data.mac_address().to_string() })
-        .collect();
+    let mut v: Vec<NetworkAdapterInfo> =
+        nets.iter().map(|(name, data)| NetworkAdapterInfo { name: name.clone(), mac_address: data.mac_address().to_string() }).collect();
     v.sort_by(|a, b| a.name.cmp(&b.name));
     v
 }
@@ -44,12 +42,9 @@ pub fn network_adapters() -> Vec<NetworkAdapterInfo> {
 pub fn processes() -> Vec<ProcessInfo> {
     let mut sys = System::new();
     sys.refresh_processes(ProcessesToUpdate::All, true);
-    let mut v: Vec<ProcessInfo> = sys
-        .processes()
-        .iter()
-        .map(|(pid, p)| ProcessInfo { name: p.name().to_string_lossy().to_string(), pid: pid.as_u32() })
-        .collect();
-    v.sort_by(|a, b| a.name.to_lowercase().cmp(&b.name.to_lowercase()));
+    let mut v: Vec<ProcessInfo> =
+        sys.processes().iter().map(|(pid, p)| ProcessInfo { name: p.name().to_string_lossy().to_string(), pid: pid.as_u32() }).collect();
+    v.sort_by_key(|a| a.name.to_lowercase());
     v
 }
 
@@ -57,12 +52,11 @@ pub fn processes() -> Vec<ProcessInfo> {
 pub fn disk_space(path: &Path) -> Option<DiskSpace> {
     let target = std::fs::canonicalize(path).unwrap_or_else(|_| path.to_path_buf());
     let disks = Disks::new_with_refreshed_list();
-    disks
-        .list()
-        .iter()
-        .filter(|d| is_within(d.mount_point(), &target))
-        .max_by_key(|d| normalize_for_compare(d.mount_point()).len())
-        .map(|d| DiskSpace { path: path.display().to_string(), total_bytes: d.total_space(), free_bytes: d.available_space() })
+    disks.list().iter().filter(|d| is_within(d.mount_point(), &target)).max_by_key(|d| normalize_for_compare(d.mount_point()).len()).map(|d| DiskSpace {
+        path: path.display().to_string(),
+        total_bytes: d.total_space(),
+        free_bytes: d.available_space(),
+    })
 }
 
 pub fn file_system_of(path: &Path) -> Option<String> {

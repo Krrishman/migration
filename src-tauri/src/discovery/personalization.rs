@@ -127,7 +127,11 @@ impl DiscoveryModule for PersonalizationModule {
                     path_source(&sticky),
                     Some(user),
                     RestoreKind::StickyNotes,
-                    ItemPayload::AllowList { root: sticky, files: vec!["plum.sqlite".into(), "plum.sqlite-wal".into(), "plum.sqlite-shm".into()], dirs: vec![] },
+                    ItemPayload::AllowList {
+                        root: sticky,
+                        files: vec!["plum.sqlite".into(), "plum.sqlite-wal".into(), "plum.sqlite-shm".into()],
+                        dirs: vec![],
+                    },
                 );
                 item.support = SupportLevel::Partial;
                 item.opt_in_only = true;
@@ -137,7 +141,10 @@ impl DiscoveryModule for PersonalizationModule {
                     "Restored only when Sticky Notes is closed and the destination has no existing notes database (or per your collision policy).".into(),
                     "If the user signs in to Sticky Notes with a Microsoft account, notes sync from the cloud instead.".into(),
                 ];
-                item.warnings.push(Warning::info(WarningCode::VersionDependent, "Database format depends on the Sticky Notes app version; the destination should run the same or a newer version."));
+                item.warnings.push(Warning::info(
+                    WarningCode::VersionDependent,
+                    "Database format depends on the Sticky Notes app version; the destination should run the same or a newer version.",
+                ));
                 let running = ctx.process_running(STICKY_NOTES_PROCESSES);
                 if !running.is_empty() {
                     item.warnings.push(Warning::warn(WarningCode::ApplicationRunning, "Sticky Notes is running. Close it before capture."));

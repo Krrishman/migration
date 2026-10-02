@@ -36,8 +36,11 @@ impl DiscoveryModule for OutlookModule {
                 );
                 item.includes = vec!["All signature files and *_files resource folders".into()];
                 item.excludes = vec!["Signature assignments per account (stored with the mail profile)".into()];
-                item.restore_notes = vec!["Copied to %APPDATA%\\Microsoft\\Signatures for the mapped user. Re-select default signatures in Outlook > Options > Mail > Signatures.".into(),
-                    "New Outlook / Outlook on the web store signatures in the cloud and do not use these files.".into()];
+                item.restore_notes = vec![
+                    "Copied to %APPDATA%\\Microsoft\\Signatures for the mapped user. Re-select default signatures in Outlook > Options > Mail > Signatures."
+                        .into(),
+                    "New Outlook / Outlook on the web store signatures in the cloud and do not use these files.".into(),
+                ];
                 measure(&mut item, ctx)?;
                 apply_default_selection(&mut item, Some(user));
                 acc.items.push(item);
@@ -139,11 +142,15 @@ impl DiscoveryModule for OutlookModule {
                 ];
                 measure(&mut item, ctx)?;
                 if item.estimated_size.unwrap_or(0) > 10 * 1024 * 1024 * 1024 {
-                    item.warnings.push(Warning::warn(WarningCode::LargeItem, "Large PST file. Copying may take a long time; consider importing it into the mailbox instead."));
+                    item.warnings.push(Warning::warn(
+                        WarningCode::LargeItem,
+                        "Large PST file. Copying may take a long time; consider importing it into the mailbox instead.",
+                    ));
                 }
                 if !outlook_running.is_empty() {
                     item.access = AccessState::Locked;
-                    item.warnings.push(Warning::warn(WarningCode::ApplicationRunning, "Outlook is running and keeps PST files open. Close Outlook before capture."));
+                    item.warnings
+                        .push(Warning::warn(WarningCode::ApplicationRunning, "Outlook is running and keeps PST files open. Close Outlook before capture."));
                 }
                 acc.items.push(item);
             }
@@ -165,7 +172,8 @@ impl DiscoveryModule for OutlookModule {
                 item.access = AccessState::Accessible;
                 item.includes = vec!["Mail profile names, signature/template/PST locations, recommended restore procedure".into()];
                 item.excludes = vec!["Account server settings, passwords, tokens".into()];
-                item.restore_notes = vec!["Recreate the mail profile by signing in to Outlook on the destination (Autodiscover configures most accounts).".into()];
+                item.restore_notes =
+                    vec!["Recreate the mail profile by signing in to Outlook on the destination (Autodiscover configures most accounts).".into()];
                 apply_default_selection(&mut item, Some(user));
                 acc.items.push(item);
             }

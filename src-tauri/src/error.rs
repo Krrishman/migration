@@ -6,7 +6,11 @@ use serde::{Serialize, Serializer};
 #[derive(Debug, thiserror::Error)]
 pub enum AppError {
     #[error("I/O error at {path}: {source}")]
-    Io { path: String, #[source] source: std::io::Error },
+    Io {
+        path: String,
+        #[source]
+        source: std::io::Error,
+    },
     #[error("Path rejected by safety rules: {0}")]
     UnsafePath(String),
     #[error("Manifest is invalid: {0}")]

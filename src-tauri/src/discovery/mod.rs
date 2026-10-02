@@ -75,6 +75,7 @@ pub fn item_id(module: &str, owner: Option<&UserProfile>, key: &str) -> String {
 }
 
 /// Baseline item with conservative defaults (not selected, unknown access).
+#[allow(clippy::too_many_arguments)] // every field is required; a builder would only add noise
 pub fn base_item(
     id: String,
     category: Category,
@@ -167,8 +168,11 @@ pub fn measure(item: &mut DiscoveryItem, ctx: &DiscoveryContext) -> AppResult<()
             if item.access == AccessState::AccessDenied {
                 item.requires_admin = true;
                 item.warnings.push(
-                    Warning::warn(WarningCode::AccessDenied, "Access denied for the current account. Restart elevated to include it; permissions are never bypassed.")
-                        .with_path(root.display().to_string()),
+                    Warning::warn(
+                        WarningCode::AccessDenied,
+                        "Access denied for the current account. Restart elevated to include it; permissions are never bypassed.",
+                    )
+                    .with_path(root.display().to_string()),
                 );
             }
             return Ok(());
@@ -181,7 +185,8 @@ pub fn measure(item: &mut DiscoveryItem, ctx: &DiscoveryContext) -> AppResult<()
         item.item_count = Some(s.files);
         if s.access_denied > 0 {
             item.access = AccessState::PartiallyAccessible;
-            item.warnings.push(Warning::warn(WarningCode::AccessDenied, format!("{} folder(s) or file(s) could not be read and will be skipped.", s.access_denied)));
+            item.warnings
+                .push(Warning::warn(WarningCode::AccessDenied, format!("{} folder(s) or file(s) could not be read and will be skipped.", s.access_denied)));
         }
         if s.cloud_placeholders > 0 {
             item.warnings.push(Warning::warn(
@@ -192,17 +197,24 @@ pub fn measure(item: &mut DiscoveryItem, ctx: &DiscoveryContext) -> AppResult<()
         if s.efs_files > 0 {
             item.warnings.push(Warning::warn(
                 WarningCode::EfsEncrypted,
-                format!("{} EFS-encrypted file(s). They may not open on the destination PC without the user's EFS certificate (export it with certmgr).", s.efs_files),
+                format!(
+                    "{} EFS-encrypted file(s). They may not open on the destination PC without the user's EFS certificate (export it with certmgr).",
+                    s.efs_files
+                ),
             ));
         }
         if s.long_paths > 0 {
             item.warnings.push(Warning::warn(WarningCode::LongPath, format!("{} file(s) have paths longer than 260 characters.", s.long_paths)));
         }
         if s.sensitive_excluded > 0 {
-            item.warnings.push(Warning::info(WarningCode::SensitiveExcluded, format!("{} protected item(s) (credentials, keys, cookies or tokens) are excluded automatically.", s.sensitive_excluded)));
+            item.warnings.push(Warning::info(
+                WarningCode::SensitiveExcluded,
+                format!("{} protected item(s) (credentials, keys, cookies or tokens) are excluded automatically.", s.sensitive_excluded),
+            ));
         }
         if s.links_skipped > 0 {
-            item.warnings.push(Warning::info(WarningCode::ReparsePointSkipped, format!("{} shortcut-like link(s) or junction(s) are not followed.", s.links_skipped)));
+            item.warnings
+                .push(Warning::info(WarningCode::ReparsePointSkipped, format!("{} shortcut-like link(s) or junction(s) are not followed.", s.links_skipped)));
         }
     } else {
         let mut total = 0u64;
@@ -312,12 +324,7 @@ impl DiscoveryService {
         }
         // Approximate profile sizes from what was measured (labelled approximate in UI).
         for u in &mut users {
-            let sum: u64 = acc
-                .items
-                .iter()
-                .filter(|i| i.owner.as_ref().is_some_and(|o| o.sid == u.sid))
-                .filter_map(|i| i.estimated_size)
-                .sum();
+            let sum: u64 = acc.items.iter().filter(|i| i.owner.as_ref().is_some_and(|o| o.sid == u.sid)).filter_map(|i| i.estimated_size).sum();
             if sum > 0 {
                 u.size_bytes = Some(sum);
             }
@@ -370,9 +377,8 @@ pub fn custom_folder_item(ctx: &DiscoveryContext, path: &Path, owner: Option<&Us
     );
     item.includes = vec!["All files and subfolders".into()];
     item.excludes = vec!["Temporary files, recycle bins, links/junctions, protected credential and key files".into()];
-    item.restore_notes = vec![
-        "Restored to the same path inside the mapped user's profile, or to \"Migrated Files\" in that profile when it was outside the profile.".into(),
-    ];
+    item.restore_notes =
+        vec!["Restored to the same path inside the mapped user's profile, or to \"Migrated Files\" in that profile when it was outside the profile.".into()];
     measure(&mut item, ctx)?;
     item.selected_by_default = true;
     Ok(item)

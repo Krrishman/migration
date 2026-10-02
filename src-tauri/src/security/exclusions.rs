@@ -206,9 +206,7 @@ impl ExclusionRules {
         let name = n.rsplit('/').next().unwrap_or_default().to_string();
         if is_dir {
             let in_app_data = n.contains("/appdata/");
-            if let Some((_, what)) =
-                SENSITIVE_DIR_NAMES.iter().find(|(d, _)| *d == name && (in_app_data || d.starts_with('.')))
-            {
+            if let Some((_, what)) = SENSITIVE_DIR_NAMES.iter().find(|(d, _)| *d == name && (in_app_data || d.starts_with('.'))) {
                 return Some(ExclusionReason::Sensitive(what));
             }
             if RECYCLE_DIRS.contains(&name.as_str()) {
@@ -240,11 +238,8 @@ impl ExclusionRules {
 
     /// Declarative list written into every manifest.
     pub fn manifest_exclusions(&self) -> Vec<Exclusion> {
-        let mut v: Vec<Exclusion> = self
-            .system_roots
-            .iter()
-            .map(|r| Exclusion { pattern: r.display().to_string(), reason: ExclusionReason::SystemPath.describe() })
-            .collect();
+        let mut v: Vec<Exclusion> =
+            self.system_roots.iter().map(|r| Exclusion { pattern: r.display().to_string(), reason: ExclusionReason::SystemPath.describe() }).collect();
         v.extend(SYSTEM_FILE_NAMES.iter().map(|f| Exclusion { pattern: f.to_string(), reason: ExclusionReason::SystemFile.describe() }));
         v.extend(RECYCLE_DIRS.iter().map(|d| Exclusion { pattern: format!("{d}/"), reason: ExclusionReason::RecycleBin.describe() }));
         v.extend(TEMP_DIR_NAMES.iter().map(|d| Exclusion { pattern: format!("{d}/"), reason: ExclusionReason::Temporary.describe() }));
@@ -271,11 +266,7 @@ mod tests {
     use super::*;
 
     fn rules() -> ExclusionRules {
-        ExclusionRules::new(vec![
-            PathBuf::from("C:\\Windows"),
-            PathBuf::from("C:\\Program Files"),
-            PathBuf::from("C:\\Program Files (x86)"),
-        ])
+        ExclusionRules::new(vec![PathBuf::from("C:\\Windows"), PathBuf::from("C:\\Program Files"), PathBuf::from("C:\\Program Files (x86)")])
     }
 
     #[test]

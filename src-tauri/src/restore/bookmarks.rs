@@ -29,12 +29,8 @@ fn chromium_node(v: &serde_json::Value) -> Option<Node> {
         Some("url") => {
             let url = v.get("url").and_then(|u| u.as_str())?.to_string();
             // Chromium stores microseconds since 1601-01-01.
-            let add_date = v
-                .get("date_added")
-                .and_then(|d| d.as_str())
-                .and_then(|d| d.parse::<i64>().ok())
-                .map(|us| us / 1_000_000 - 11_644_473_600)
-                .filter(|s| *s > 0);
+            let add_date =
+                v.get("date_added").and_then(|d| d.as_str()).and_then(|d| d.parse::<i64>().ok()).map(|us| us / 1_000_000 - 11_644_473_600).filter(|s| *s > 0);
             Some(Node::Link { title, url, add_date })
         }
         _ => None,
@@ -100,7 +96,9 @@ pub fn parse_firefox(places: &Path) -> AppResult<Vec<Node>> {
             .collect()
     }
     let mut out = Vec::new();
-    for (guid, label) in [("toolbar_____", "Bookmarks Toolbar"), ("menu________", "Bookmarks Menu"), ("unfiled_____", "Other Bookmarks"), ("mobile______", "Mobile Bookmarks")] {
+    for (guid, label) in
+        [("toolbar_____", "Bookmarks Toolbar"), ("menu________", "Bookmarks Menu"), ("unfiled_____", "Other Bookmarks"), ("mobile______", "Mobile Bookmarks")]
+    {
         if let Some(root) = rows.iter().find(|r| r.guid == guid) {
             let children = build(root.id, &rows, 0);
             if !children.is_empty() {
@@ -143,11 +141,13 @@ pub fn to_netscape_html(title: &str, nodes: &[Node]) -> (String, usize, usize) {
     let mut skipped = 0;
     render(nodes, 0, &mut out, &mut skipped);
     fn count(n: &[Node]) -> usize {
-        n.iter().map(|x| match x {
-            Node::Folder { children, .. } => count(children),
-            Node::Link { .. } => 1,
-            Node::Separator => 0,
-        }).sum()
+        n.iter()
+            .map(|x| match x {
+                Node::Folder { children, .. } => count(children),
+                Node::Link { .. } => 1,
+                Node::Separator => 0,
+            })
+            .sum()
     }
     let total = count(nodes);
     (out, total - skipped, skipped)

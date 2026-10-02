@@ -166,9 +166,7 @@ pub fn parse_inventory(json: &str) -> Result<ParseOutcome, String> {
             let driver_name = non_empty(p.driver_name).unwrap_or_default();
             let port = raw.ports.iter().find(|x| x.name.eq_ignore_ascii_case(&port_name));
             let host = port.and_then(|x| non_empty(x.printer_host_address.clone()));
-            let port_tuple = port.map(|x| {
-                (x.description.as_deref().unwrap_or(""), x.port_monitor.as_deref().unwrap_or(""), host.as_deref().unwrap_or(""))
-            });
+            let port_tuple = port.map(|x| (x.description.as_deref().unwrap_or(""), x.port_monitor.as_deref().unwrap_or(""), host.as_deref().unwrap_or("")));
             let connection = classify(&p.name, p.kind.as_deref(), &port_name, port_tuple, &driver_name);
             let share_name = non_empty(p.share_name);
             let unc_path = if p.name.starts_with(r"\\") {

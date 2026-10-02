@@ -51,10 +51,22 @@ pub struct ChromiumProvider {
 
 impl ChromiumProvider {
     pub fn chrome() -> Self {
-        Self { kind: BrowserKind::Chrome, name: "Google Chrome".into(), rel_root: Some("Google/Chrome/User Data"), custom_root: None, processes: &["chrome.exe"] }
+        Self {
+            kind: BrowserKind::Chrome,
+            name: "Google Chrome".into(),
+            rel_root: Some("Google/Chrome/User Data"),
+            custom_root: None,
+            processes: &["chrome.exe"],
+        }
     }
     pub fn edge() -> Self {
-        Self { kind: BrowserKind::Edge, name: "Microsoft Edge".into(), rel_root: Some("Microsoft/Edge/User Data"), custom_root: None, processes: &["msedge.exe"] }
+        Self {
+            kind: BrowserKind::Edge,
+            name: "Microsoft Edge".into(),
+            rel_root: Some("Microsoft/Edge/User Data"),
+            custom_root: None,
+            processes: &["msedge.exe"],
+        }
     }
     /// Generic Chromium-family browser whose "User Data" root the technician
     /// selected and confirmed manually (e.g. Brave, Vivaldi).
@@ -95,7 +107,11 @@ impl BrowserProvider for ChromiumProvider {
         for part in self.rel_root.unwrap_or_default().split('/') {
             p.push(part);
         }
-        if p.is_dir() { vec![p] } else { vec![] }
+        if p.is_dir() {
+            vec![p]
+        } else {
+            vec![]
+        }
     }
     fn enumerate_profiles(&self, root: &Path) -> Vec<(String, Option<String>, PathBuf)> {
         let mut v = Vec::new();
@@ -118,15 +134,35 @@ impl BrowserProvider for ChromiumProvider {
             dirs.push("Cache".into());
         }
         AllowList {
-            files: ["Bookmarks", "Bookmarks.bak", "History", "History-journal", "Favicons", "Favicons-journal", "Top Sites", "Top Sites-journal", "Preferences", "Custom Dictionary.txt", "Shortcuts", "Visited Links"]
-                .iter()
-                .map(|s| s.to_string())
-                .collect(),
+            files: [
+                "Bookmarks",
+                "Bookmarks.bak",
+                "History",
+                "History-journal",
+                "Favicons",
+                "Favicons-journal",
+                "Top Sites",
+                "Top Sites-journal",
+                "Preferences",
+                "Custom Dictionary.txt",
+                "Shortcuts",
+                "Visited Links",
+            ]
+            .iter()
+            .map(|s| s.to_string())
+            .collect(),
             dirs,
         }
     }
     fn supported_components(&self) -> Vec<&'static str> {
-        vec!["Bookmarks/favorites", "Browsing history", "Top sites and favicons", "Custom dictionary", "Preferences (partial)", "Installed extension files (partial)"]
+        vec![
+            "Bookmarks/favorites",
+            "Browsing history",
+            "Top sites and favicons",
+            "Custom dictionary",
+            "Preferences (partial)",
+            "Installed extension files (partial)",
+        ]
     }
     fn excluded_components(&self) -> Vec<&'static str> {
         vec![
@@ -199,7 +235,11 @@ impl BrowserProvider for FirefoxProvider {
     }
     fn profile_roots(&self, platform: &dyn Platform, user: &UserProfile) -> Vec<PathBuf> {
         let p = platform.roaming_app_data(user).join("Mozilla").join("Firefox");
-        if p.join("profiles.ini").is_file() { vec![p] } else { vec![] }
+        if p.join("profiles.ini").is_file() {
+            vec![p]
+        } else {
+            vec![]
+        }
     }
     fn enumerate_profiles(&self, root: &Path) -> Vec<(String, Option<String>, PathBuf)> {
         let Ok(ini) = std::fs::read_to_string(root.join("profiles.ini")) else { return vec![] };
@@ -216,8 +256,21 @@ impl BrowserProvider for FirefoxProvider {
         }
         AllowList {
             files: [
-                "places.sqlite", "places.sqlite-wal", "favicons.sqlite", "favicons.sqlite-wal", "prefs.js", "user.js", "extensions.json", "addons.json",
-                "search.json.mozlz4", "handlers.json", "xulstore.json", "containers.json", "permissions.sqlite", "content-prefs.sqlite", "persdict.dat",
+                "places.sqlite",
+                "places.sqlite-wal",
+                "favicons.sqlite",
+                "favicons.sqlite-wal",
+                "prefs.js",
+                "user.js",
+                "extensions.json",
+                "addons.json",
+                "search.json.mozlz4",
+                "handlers.json",
+                "xulstore.json",
+                "containers.json",
+                "permissions.sqlite",
+                "content-prefs.sqlite",
+                "persdict.dat",
             ]
             .iter()
             .map(|s| s.to_string())
@@ -226,7 +279,15 @@ impl BrowserProvider for FirefoxProvider {
         }
     }
     fn supported_components(&self) -> Vec<&'static str> {
-        vec!["Bookmarks and history (places.sqlite)", "Bookmark backups", "Preferences (prefs.js)", "Search engines", "Containers", "Site permissions", "Extensions (partial)"]
+        vec![
+            "Bookmarks and history (places.sqlite)",
+            "Bookmark backups",
+            "Preferences (prefs.js)",
+            "Search engines",
+            "Containers",
+            "Site permissions",
+            "Extensions (partial)",
+        ]
     }
     fn excluded_components(&self) -> Vec<&'static str> {
         vec![
@@ -263,12 +324,7 @@ pub fn default_providers() -> Vec<Arc<dyn BrowserProvider>> {
 }
 
 /// Build discovery items for every profile a provider finds for a user.
-pub fn discover_with_provider(
-    provider: &dyn BrowserProvider,
-    ctx: &DiscoveryContext,
-    user: &UserProfile,
-    acc: &mut ScanAccumulator,
-) -> AppResult<()> {
+pub fn discover_with_provider(provider: &dyn BrowserProvider, ctx: &DiscoveryContext, user: &UserProfile, acc: &mut ScanAccumulator) -> AppResult<()> {
     let running = ctx.process_running(provider.process_names());
     for root in provider.profile_roots(ctx.platform, user) {
         for (dir, profile_name, path) in provider.enumerate_profiles(&root) {

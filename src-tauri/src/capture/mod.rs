@@ -119,7 +119,7 @@ fn user_dirs(users: &[&UserProfile]) -> HashMap<String, String> {
 
 /// One unit of independently tracked work.
 enum TaskKind {
-    Files(DiscoveryItem),
+    Files(Box<DiscoveryItem>),
     Inventory { name: String, items: Vec<DiscoveryItem> },
 }
 
@@ -144,7 +144,7 @@ fn plan_tasks(items: &[DiscoveryItem]) -> Vec<PlannedTask> {
                     Some(o) => format!("{} ({})", i.display_name, o.account_name),
                     None => i.display_name.clone(),
                 },
-                kind: TaskKind::Files(i.clone()),
+                kind: TaskKind::Files(Box::new(i.clone())),
             }),
         }
     }
@@ -217,10 +217,7 @@ impl<'a> CaptureEngine<'a> {
             return Err(AppError::InvalidRequest("This bundle is already complete; start a new capture instead.".into()));
         }
         if !manifest.source_machine.computer_name.eq_ignore_ascii_case(&scan.machine.computer_name) {
-            return Err(AppError::InvalidRequest(format!(
-                "This bundle was started on {}; resume it on that computer.",
-                manifest.source_machine.computer_name
-            )));
+            return Err(AppError::InvalidRequest(format!("This bundle was started on {}; resume it on that computer.", manifest.source_machine.computer_name)));
         }
         let req = bundle::read_request(&layout)?;
         let key = if manifest.encryption.enabled {
@@ -602,7 +599,8 @@ impl Run<'_> {
             if let Some(rec) = self.checkpoint.get(&task_id, rel)? {
                 if rec.status == FileStatus::Done && rec.size == *size && rec.mtime == *mtime {
                     if let (Some(h), Some(ph), Ok(meta)) = (&rec.stored_hash, &rec.plain_hash, std::fs::metadata(&dest)) {
-                        let intact = Some(meta.len()) == rec.stored_size && (!self.options.verify_after_copy || hashing::sha256_file(&dest).ok().as_ref() == Some(h));
+                        let intact =
+                            Some(meta.len()) == rec.stored_size && (!self.options.verify_after_copy || hashing::sha256_file(&dest).ok().as_ref() == Some(h));
                         if intact {
                             entries.push(HashEntry { sha256: h.clone(), path: stored_rel.clone() });
                             plain_entries.push(HashEntry { sha256: ph.clone(), path: stored_rel.clone() });
@@ -618,7 +616,9 @@ impl Run<'_> {
             if self.fat32 && *size > FAT32_MAX_FILE {
                 skipped += 1;
                 tracker.warn();
-                warnings.push(Warning::warn(WarningCode::LargeItem, "File is 4 GB or larger and cannot be stored on a FAT32 destination.").with_path(display_path(src)));
+                warnings.push(
+                    Warning::warn(WarningCode::LargeItem, "File is 4 GB or larger and cannot be stored on a FAT32 destination.").with_path(display_path(src)),
+                );
                 self.logger.warn(Some(&task_id), format!("Skipped (FAT32 4 GB limit): {}", display_path(src)));
                 tracker.advance(*size, 1, None);
                 continue;
@@ -661,11 +661,17 @@ impl Run<'_> {
                         tracker.retried();
                     }
                     if o.retries > 0 {
-                        self.logger.info(Some(&task_id), format!("Copied after {} retr{}: {}", o.retries, if o.retries == 1 { "y" } else { "ies" }, display_path(src)));
+                        self.logger.info(
+                            Some(&task_id),
+                            format!("Copied after {} retr{}: {}", o.retries, if o.retries == 1 { "y" } else { "ies" }, display_path(src)),
+                        );
                     }
                     if o.plain_bytes != *size {
                         tracker.warn();
-                        warnings.push(Warning::warn(WarningCode::Other, "File changed while it was being copied; the copied version is the one read.").with_path(display_path(src)));
+                        warnings.push(
+                            Warning::warn(WarningCode::Other, "File changed while it was being copied; the copied version is the one read.")
+                                .with_path(display_path(src)),
+                        );
                     }
                     rec.status = FileStatus::Done;
                     rec.stored_hash = Some(o.stored_hash.clone());
@@ -749,7 +755,8 @@ impl Run<'_> {
         self.checkpoint.set_task_state(&task_id, "completed")?;
         tracker.progress.current_path = None;
         tracker.set_state(state);
-        self.logger.info(Some(&task_id), format!("{}: {captured_files} file(s), {captured_bytes} bytes, {skipped} skipped, {failed} failed", item.display_name));
+        self.logger
+            .info(Some(&task_id), format!("{}: {captured_files} file(s), {captured_bytes} bytes, {skipped} skipped, {failed} failed", item.display_name));
         Ok(())
     }
 
@@ -847,7 +854,10 @@ impl Run<'_> {
         } else {
             let v = bundle::verify_bundle(&self.layout, &self.manifest, false, &CancelToken::new(), |_| {})?;
             if !v.ok {
-                self.logger.error(None, format!("Bundle verification failed: {} missing, {} mismatched, {} error(s)", v.missing.len(), v.mismatches.len(), v.errors.len()));
+                self.logger.error(
+                    None,
+                    format!("Bundle verification failed: {} missing, {} mismatched, {} error(s)", v.missing.len(), v.mismatches.len(), v.errors.len()),
+                );
             }
             Some(v.ok)
         };
@@ -866,7 +876,8 @@ impl Run<'_> {
         if !canceled {
             self.manifest.completed_at = Some(now_utc());
         }
-        self.manifest.capacity.destination_free_bytes = self.platform.disk_space(&self.layout.root).map(|d| d.free_bytes).or(self.manifest.capacity.destination_free_bytes);
+        self.manifest.capacity.destination_free_bytes =
+            self.platform.disk_space(&self.layout.root).map(|d| d.free_bytes).or(self.manifest.capacity.destination_free_bytes);
         self.logger.info(None, format!("Capture finished with status {:?}", self.manifest.status));
         self.manifest.log_summary = self.logger.summary("logs/capture.log.jsonl");
         self.logger.flush();

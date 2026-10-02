@@ -53,7 +53,13 @@ fn request(opened: &migration_assistant_lib::restore::OpenedBundle, target: &Fix
 }
 
 fn snapshot(dir: &Path) -> Vec<(PathBuf, Vec<u8>)> {
-    let mut v: Vec<_> = all_files(dir).into_iter().map(|p| { let b = std::fs::read(&p).unwrap(); (p, b) }).collect();
+    let mut v: Vec<_> = all_files(dir)
+        .into_iter()
+        .map(|p| {
+            let b = std::fs::read(&p).unwrap();
+            (p, b)
+        })
+        .collect();
     v.sort();
     v
 }
@@ -96,13 +102,16 @@ fn dry_run_plan_writes_nothing_and_reports_conflicts() {
     assert_eq!(docs.policy, CollisionPolicy::SkipExisting);
     assert!(docs.target_path.as_ref().unwrap().ends_with("Documents"));
     // Ordering: user files before browsers before drives before printers.
-    let pos = |pred: &dyn Fn(&RestoreAction) -> bool| plan.actions.iter().position(|a| pred(a)).unwrap();
+    let pos = |pred: &dyn Fn(&RestoreAction) -> bool| plan.actions.iter().position(pred).unwrap();
     assert!(pos(&|a| a.category == Category::UsersFiles) < pos(&|a| a.category == Category::Browsers));
     assert!(pos(&|a| a.category == Category::Browsers) < pos(&|a| a.category == Category::NetworkDrives));
     assert!(pos(&|a| a.category == Category::NetworkDrives) < pos(&|a| a.category == Category::Printers));
     // Exact system changes are shown before confirmation.
     assert!(plan.actions.iter().any(|a| a.system_changes.iter().any(|c| matches!(c, SystemChange::MapDrive { letter, .. } if letter == "H:"))));
-    assert!(plan.actions.iter().any(|a| a.system_changes.iter().any(|c| matches!(c, SystemChange::RegistryValue { value_name, .. } if value_name == "WallPaper"))));
+    assert!(plan
+        .actions
+        .iter()
+        .any(|a| a.system_changes.iter().any(|c| matches!(c, SystemChange::RegistryValue { value_name, .. } if value_name == "WallPaper"))));
     let hp = plan.actions.iter().find(|a| a.display_name == "HP LaserJet 4th Floor").unwrap();
     assert!(hp.requires_admin && hp.blocked_reason.is_some(), "TCP/IP printer needs admin on a non-elevated target");
     let usb = plan.actions.iter().find(|a| a.display_name == "Brother HL-L2350DW");
@@ -253,9 +262,6 @@ fn encrypted_bundle_requires_correct_passphrase() {
     let s = svc.execute(&mut opened, &req).unwrap();
     assert_eq!(s.failures, 0, "{:?}", s.warnings);
     let ann = ann_target(&target);
-    assert_eq!(
-        std::fs::read(ann.join("Documents/Budget.xlsx")).unwrap(),
-        std::fs::read(c.env.source.root().join("Users/ann/Documents/Budget.xlsx")).unwrap()
-    );
+    assert_eq!(std::fs::read(ann.join("Documents/Budget.xlsx")).unwrap(), std::fs::read(c.env.source.root().join("Users/ann/Documents/Budget.xlsx")).unwrap());
     assert!(all_files(&ann.join("Desktop/Migrated Browser Data")).iter().any(|p| p.to_string_lossy().ends_with("bookmarks.html")));
 }

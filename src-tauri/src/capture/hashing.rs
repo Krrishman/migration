@@ -92,9 +92,7 @@ pub fn parse_hash_list(text: &str) -> AppResult<Vec<HashEntry>> {
         if line.trim().is_empty() {
             continue;
         }
-        let (hash, path) = line
-            .split_once("  ")
-            .ok_or_else(|| AppError::Integrity(format!("hash list line {} is malformed", i + 1)))?;
+        let (hash, path) = line.split_once("  ").ok_or_else(|| AppError::Integrity(format!("hash list line {} is malformed", i + 1)))?;
         if !is_sha256_hex(hash) {
             return Err(AppError::Integrity(format!("hash list line {} has an invalid digest", i + 1)));
         }

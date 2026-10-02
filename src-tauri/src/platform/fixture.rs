@@ -112,9 +112,9 @@ impl FixturePlatform {
     pub fn load(root: &Path) -> AppResult<Self> {
         let spec_path = root.join("platform.json");
         let raw = std::fs::read(&spec_path).at(&spec_path)?;
-        let spec: FixtureSpec = serde_json::from_slice(&raw)
-            .map_err(|e| AppError::InvalidRequest(format!("invalid fixture {}: {e}", spec_path.display())))?;
-        let root = std::fs::canonicalize(root).at(root)?;
+        let spec: FixtureSpec = serde_json::from_slice(&raw).map_err(|e| AppError::InvalidRequest(format!("invalid fixture {}: {e}", spec_path.display())))?;
+        // SafePath canonicalization strips the \\?\ prefix std adds on Windows.
+        let root = crate::security::safe_path::canonicalize(root)?;
         Ok(Self {
             processes: Mutex::new(spec.processes.clone()),
             free_space_override: Mutex::new(spec.free_space_override),
@@ -289,7 +289,12 @@ impl Platform for FixturePlatform {
         locked
             .iter()
             .any(|l| crate::security::safe_path::normalize_for_compare(&self.resolve(l)) == crate::security::safe_path::normalize_for_compare(path))
-            .then(|| std::io::Error::new(std::io::ErrorKind::ResourceBusy, "The process cannot access the file because it is being used by another process (simulated)"))
+            .then(|| {
+                std::io::Error::new(
+                    std::io::ErrorKind::ResourceBusy,
+                    "The process cannot access the file because it is being used by another process (simulated)",
+                )
+            })
     }
 
     fn printer_driver_installed(&self, driver_name: &str) -> AppResult<bool> {

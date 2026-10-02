@@ -9,3 +9,4 @@ migrations/
 coverage/
 playwright-report/
 test-results/
+dist-portable/

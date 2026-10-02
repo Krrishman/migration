@@ -103,7 +103,9 @@ impl BrowserKind {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub enum RestoreKind {
-    KnownFolder { folder: KnownFolder },
+    KnownFolder {
+        folder: KnownFolder,
+    },
     CustomFolder,
     /// Locally present OneDrive files; restored to "Migrated Files" to avoid sync conflicts.
     OneDriveLocal,
@@ -112,7 +114,10 @@ pub enum RestoreKind {
     TaskbarPins,
     QuickAccess,
     RecentItems,
-    BrowserProfile { browser: BrowserKind, profile_dir: String },
+    BrowserProfile {
+        browser: BrowserKind,
+        profile_dir: String,
+    },
     OutlookSignatures,
     OutlookTemplates,
     OutlookStationery,
@@ -124,7 +129,9 @@ pub enum RestoreKind {
     MappedDrives,
     Printers,
     /// JSON inventory only; never restored automatically.
-    Inventory { name: String },
+    Inventory {
+        name: String,
+    },
 }
 
 /// Information the capture engine needs to collect an item. This stays on the

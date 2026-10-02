@@ -29,13 +29,7 @@ pub fn is_elevated() -> bool {
         }
         let mut elevation = TOKEN_ELEVATION { TokenIsElevated: 0 };
         let mut ret_len = 0u32;
-        let ok = GetTokenInformation(
-            token,
-            TokenElevation,
-            &mut elevation as *mut _ as *mut _,
-            std::mem::size_of::<TOKEN_ELEVATION>() as u32,
-            &mut ret_len,
-        );
+        let ok = GetTokenInformation(token, TokenElevation, &mut elevation as *mut _ as *mut _, std::mem::size_of::<TOKEN_ELEVATION>() as u32, &mut ret_len);
         CloseHandle(token);
         ok != 0 && elevation.TokenIsElevated != 0
     }
@@ -155,7 +149,11 @@ pub fn set_wallpaper(path: &std::path::Path) -> AppResult<()> {
     use windows_sys::Win32::UI::WindowsAndMessaging::{SystemParametersInfoW, SPIF_SENDCHANGE, SPIF_UPDATEINIFILE, SPI_SETDESKWALLPAPER};
     let mut w = wide(&path.display().to_string());
     let ok = unsafe { SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, w.as_mut_ptr() as *mut _, SPIF_UPDATEINIFILE | SPIF_SENDCHANGE) };
-    if ok != 0 { Ok(()) } else { Err(AppError::InvalidRequest("Windows rejected the wallpaper change".into())) }
+    if ok != 0 {
+        Ok(())
+    } else {
+        Err(AppError::InvalidRequest("Windows rejected the wallpaper change".into()))
+    }
 }
 
 /// Relaunch the current executable with the "runas" verb (standard UAC prompt).
@@ -165,13 +163,7 @@ pub fn restart_elevated(args: &[String]) -> AppResult<()> {
     let exe = std::env::current_exe().map_err(|e| AppError::io("current_exe", e))?;
     let verb = wide("runas");
     let file = wide(&exe.display().to_string());
-    let params = wide(
-        &args
-            .iter()
-            .map(|a| format!("\"{}\"", a.replace('"', "")))
-            .collect::<Vec<_>>()
-            .join(" "),
-    );
+    let params = wide(&args.iter().map(|a| format!("\"{}\"", a.replace('"', ""))).collect::<Vec<_>>().join(" "));
     let h = unsafe { ShellExecuteW(null_mut(), verb.as_ptr(), file.as_ptr(), params.as_ptr(), null(), SW_SHOWNORMAL) };
     // Per the API contract, values > 32 indicate success.
     if h as isize > 32 {

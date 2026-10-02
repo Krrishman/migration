@@ -72,9 +72,15 @@ impl DiscoveryModule for UserFoldersModule {
                 item.opt_in_only = true;
                 item.includes = vec!["Locally present files in the OneDrive folder".into()];
                 item.excludes = vec!["Online-only placeholders; OneDrive account and sync configuration".into()];
-                item.restore_notes = vec!["Prefer signing in to OneDrive on the destination PC. If restored, files land in a \"Migrated Files\" folder to avoid sync conflicts.".into()];
+                item.restore_notes = vec![
+                    "Prefer signing in to OneDrive on the destination PC. If restored, files land in a \"Migrated Files\" folder to avoid sync conflicts."
+                        .into(),
+                ];
                 if offered.iter().any(|p| is_within(&root, p)) {
-                    item.warnings.push(Warning::warn(WarningCode::Other, "Overlaps with redirected known folders listed above; selecting both captures those files twice."));
+                    item.warnings.push(Warning::warn(
+                        WarningCode::Other,
+                        "Overlaps with redirected known folders listed above; selecting both captures those files twice.",
+                    ));
                 }
                 measure(&mut item, ctx)?;
                 acc.items.push(item);

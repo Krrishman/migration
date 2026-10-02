@@ -101,16 +101,9 @@ pub fn read_manifest(layout: &BundleLayout) -> AppResult<(Manifest, bool)> {
 /// Parse + schema-version check + semantic validation.
 pub fn parse_manifest(bytes: &[u8]) -> AppResult<Manifest> {
     let value: serde_json::Value = serde_json::from_slice(bytes).map_err(|e| AppError::InvalidManifest(format!("not valid JSON: {e}")))?;
-    let version = value
-        .get("schema_version")
-        .and_then(|v| v.as_str())
-        .ok_or_else(|| AppError::InvalidManifest("missing schema_version".into()))?
-        .to_string();
-    let major: u32 = version
-        .split('.')
-        .next()
-        .and_then(|m| m.parse().ok())
-        .ok_or_else(|| AppError::InvalidManifest(format!("invalid schema_version {version}")))?;
+    let version = value.get("schema_version").and_then(|v| v.as_str()).ok_or_else(|| AppError::InvalidManifest("missing schema_version".into()))?.to_string();
+    let major: u32 =
+        version.split('.').next().and_then(|m| m.parse().ok()).ok_or_else(|| AppError::InvalidManifest(format!("invalid schema_version {version}")))?;
     if major != SCHEMA_MAJOR {
         return Err(AppError::UnsupportedSchema { found: version, supported: SCHEMA_MAJOR });
     }
@@ -173,7 +166,13 @@ pub fn read_request(layout: &BundleLayout) -> AppResult<CaptureRequest> {
 
 /// Verify bundle integrity. With `full` every payload file is re-hashed;
 /// otherwise only hash-list digests and file presence are checked.
-pub fn verify_bundle(layout: &BundleLayout, manifest: &Manifest, full: bool, cancel: &CancelToken, mut on_file: impl FnMut(&str)) -> AppResult<BundleValidation> {
+pub fn verify_bundle(
+    layout: &BundleLayout,
+    manifest: &Manifest,
+    full: bool,
+    cancel: &CancelToken,
+    mut on_file: impl FnMut(&str),
+) -> AppResult<BundleValidation> {
     let mut v = BundleValidation {
         bundle_path: layout.root.display().to_string(),
         bundle_id: manifest.bundle_id.clone(),

@@ -19,7 +19,8 @@ pub struct ReportPaths {
     pub summary_html: String,
 }
 
-const NO_SECRETS: &str = "This report never contains passwords, browser cookies, authentication tokens, saved credentials, Wi-Fi keys, private keys or license keys.";
+const NO_SECRETS: &str =
+    "This report never contains passwords, browser cookies, authentication tokens, saved credentials, Wi-Fi keys, private keys or license keys.";
 
 fn opt_bytes(b: Option<u64>) -> String {
     b.map(format_bytes).unwrap_or_else(|| "unknown".into())
@@ -205,7 +206,15 @@ pub fn technician_html(m: &Manifest, tasks: &[TaskProgress]) -> String {
         &["Browser", "User", "Profile folder", "Profile name", "Size"],
         &m.browser_profiles
             .iter()
-            .map(|b| vec![b.browser.label().into(), b.owner.account_name.clone(), b.profile_dir.clone(), b.profile_name.clone().unwrap_or_default(), opt_bytes(b.size_bytes)])
+            .map(|b| {
+                vec![
+                    b.browser.label().into(),
+                    b.owner.account_name.clone(),
+                    b.profile_dir.clone(),
+                    b.profile_name.clone().unwrap_or_default(),
+                    opt_bytes(b.size_bytes),
+                ]
+            })
             .collect::<Vec<_>>(),
     );
 
@@ -241,7 +250,10 @@ pub fn technician_html(m: &Manifest, tasks: &[TaskProgress]) -> String {
     h.h2("Network drives");
     h.table(
         &["Drive", "UNC path", "Reconnect at sign-in", "Status"],
-        &m.mapped_drives.iter().map(|d| vec![d.letter.clone(), d.unc_path.clone(), if d.persistent { "Yes".into() } else { "No".into() }, d.status.clone()]).collect::<Vec<_>>(),
+        &m.mapped_drives
+            .iter()
+            .map(|d| vec![d.letter.clone(), d.unc_path.clone(), if d.persistent { "Yes".into() } else { "No".into() }, d.status.clone()])
+            .collect::<Vec<_>>(),
     );
 
     h.h2("Installed applications");
@@ -297,11 +309,25 @@ pub fn technician_html(m: &Manifest, tasks: &[TaskProgress]) -> String {
             &["Restore", "Finished", "Target", "Written", "Skipped", "Failures", "Outcome"],
             &m.restore_history
                 .iter()
-                .map(|r| vec![r.restore_id.clone(), r.finished_at.to_rfc3339(), r.target_computer.clone(), r.files_written.to_string(), r.files_skipped.to_string(), r.failures.to_string(), r.outcome.clone()])
+                .map(|r| {
+                    vec![
+                        r.restore_id.clone(),
+                        r.finished_at.to_rfc3339(),
+                        r.target_computer.clone(),
+                        r.files_written.to_string(),
+                        r.files_skipped.to_string(),
+                        r.failures.to_string(),
+                        r.outcome.clone(),
+                    ]
+                })
                 .collect::<Vec<_>>(),
         );
     }
-    h.finish(&format!("Generated {} by Migration Assistant {}. {NO_SECRETS} Keep this detailed report local.", chrono::Utc::now().format("%Y-%m-%d %H:%M UTC"), crate::APP_VERSION))
+    h.finish(&format!(
+        "Generated {} by Migration Assistant {}. {NO_SECRETS} Keep this detailed report local.",
+        chrono::Utc::now().format("%Y-%m-%d %H:%M UTC"),
+        crate::APP_VERSION
+    ))
 }
 
 pub fn redactor_for(m: &Manifest) -> Redactor {
@@ -429,7 +455,8 @@ pub fn restore_report_html(m: &Manifest, plan: &RestorePlan, summary: &RestoreSu
             .collect::<Vec<_>>(),
     );
     h.h2("System changes applied or listed");
-    let changes: Vec<String> = plan.actions.iter().flat_map(|a| a.system_changes.iter().map(|c| format!("{}: {}", a.display_name, describe_change(c)))).collect();
+    let changes: Vec<String> =
+        plan.actions.iter().flat_map(|a| a.system_changes.iter().map(|c| format!("{}: {}", a.display_name, describe_change(c)))).collect();
     h.list(&changes);
     h.h2("Warnings");
     h.list(&summary.warnings.iter().map(|w| format!("{}{}", w.message, w.path.as_ref().map(|p| format!(" ({p})")).unwrap_or_default())).collect::<Vec<_>>());
@@ -439,7 +466,9 @@ pub fn restore_report_html(m: &Manifest, plan: &RestorePlan, summary: &RestoreSu
 pub fn describe_change(c: &SystemChange) -> String {
     match c {
         SystemChange::RegistryValue { hive, key, value_name, value } => format!("Set {hive}\\{key}\\{value_name} = \"{value}\""),
-        SystemChange::MapDrive { letter, unc_path, persistent } => format!("Map {letter} to {unc_path}{}", if *persistent { " (reconnect at sign-in)" } else { "" }),
+        SystemChange::MapDrive { letter, unc_path, persistent } => {
+            format!("Map {letter} to {unc_path}{}", if *persistent { " (reconnect at sign-in)" } else { "" })
+        }
         SystemChange::ConnectSharedPrinter { unc_path } => format!("Connect shared printer {unc_path}"),
         SystemChange::AddNetworkPrinter { name, host_address, driver_name, port_name } => {
             format!("Add printer \"{name}\" on port {port_name} ({host_address}) using installed driver \"{driver_name}\"")

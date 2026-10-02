@@ -25,7 +25,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         std::process::exit(2);
     }
     let source = FixturePlatform::load(&PathBuf::from(&args[0]))?;
-    let scan = DiscoveryService::new().scan(&source, &CancelToken::new(), true, &|p| eprintln!("[scan {}/{}] {}", p.stage_index + 1, p.stage_count, p.message))?;
+    let scan =
+        DiscoveryService::new().scan(&source, &CancelToken::new(), true, &|p| eprintln!("[scan {}/{}] {}", p.stage_index + 1, p.stage_count, p.message))?;
     println!("Scanned {}: {} items, {} users", scan.machine.computer_name, scan.items.len(), scan.users.len());
     let mut ids: Vec<String> = scan.items.iter().filter(|i| i.selected_by_default).map(|i| i.id.clone()).collect();
     for i in &scan.items {
@@ -34,7 +35,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
     std::fs::create_dir_all(&args[1])?;
-    let req = CaptureRequest { destination_root: args[1].clone(), selected_item_ids: ids, encryption: EncryptionRequest::default(), options: CaptureOptions::default() };
+    let req = CaptureRequest {
+        destination_root: args[1].clone(),
+        selected_item_ids: ids,
+        encryption: EncryptionRequest::default(),
+        options: CaptureOptions::default(),
+    };
     let summary = CaptureEngine { platform: &source, sink: Arc::new(NullSink), cancel: CancelToken::new() }.start(&scan, &req)?;
     // Optional: dump JSON used by the UI mock backend (see scripts/build_mock_data.py).
     let dump = std::env::var_os("MA_DUMP_DIR").map(PathBuf::from);
@@ -65,12 +71,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         };
         let plan = svc.plan(&opened, &req)?;
         let target_info = svc.target_info()?;
-        write("overview.json", &serde_json::json!({
-            "validation": opened.validation,
-            "manifest": opened.manifest,
-            "target": target_info,
-            "suggested_mappings": req.mappings,
-        }));
+        write(
+            "overview.json",
+            &serde_json::json!({
+                "validation": opened.validation,
+                "manifest": opened.manifest,
+                "target": target_info,
+                "suggested_mappings": req.mappings,
+            }),
+        );
         write("plan.json", &plan);
         println!("Restore plan: {} action(s), {} file(s), {} conflict(s)", plan.actions.len(), plan.total_files, plan.total_conflicts);
         let r = svc.execute(&mut opened, &req)?;

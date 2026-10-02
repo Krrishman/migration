@@ -41,11 +41,8 @@ pub fn resolve(exe_path: &Path) -> PortablePaths {
     let config_path = exe_dir.join(CONFIG_FILE_NAME);
     let config = load_config(&config_path);
     let data_dir = writable.then(|| exe_dir.join(DATA_DIR_NAME));
-    let default_destination = config
-        .as_ref()
-        .and_then(|c| c.destination_root.clone())
-        .filter(|d| Path::new(d).is_dir())
-        .or_else(|| writable.then(|| exe_dir.display().to_string()));
+    let default_destination =
+        config.as_ref().and_then(|c| c.destination_root.clone()).filter(|d| Path::new(d).is_dir()).or_else(|| writable.then(|| exe_dir.display().to_string()));
     PortablePaths {
         exe_path: exe_path.display().to_string(),
         exe_dir: exe_dir.display().to_string(),

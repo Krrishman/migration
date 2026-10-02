@@ -52,13 +52,21 @@ pub fn registry() -> Vec<SettingsPlugin> {
             display_name: "Microsoft Office templates & custom dictionary",
             supported_versions: "Office 2013–2021, Microsoft 365 (desktop)",
             discovery_paths: vec![
-                PluginPath { root: PluginRoot::RoamingAppData, rel: "Microsoft/Templates", files: &[], extensions: &["dotx", "dotm", "potx", "potm", "xltx", "xltm", "thmx"] },
+                PluginPath {
+                    root: PluginRoot::RoamingAppData,
+                    rel: "Microsoft/Templates",
+                    files: &[],
+                    extensions: &["dotx", "dotm", "potx", "potm", "xltx", "xltm", "thmx"],
+                },
                 PluginPath { root: PluginRoot::RoamingAppData, rel: "Microsoft/UProof", files: &["CUSTOM.DIC"], extensions: &[] },
             ],
             discovery_registry_keys: &[],
             included_settings: &["Normal.dotm and other document templates", "Custom spelling dictionary (CUSTOM.DIC)"],
             excluded_sensitive_data: &["Office licensing/activation", "Account sign-in and identity cache", "Recent-file lists"],
-            compatibility_notes: &["Close Word before restoring Normal.dotm.", "Templates with macros (.dotm) may be blocked by the destination's macro policy."],
+            compatibility_notes: &[
+                "Close Word before restoring Normal.dotm.",
+                "Templates with macros (.dotm) may be blocked by the destination's macro policy.",
+            ],
             capture: "File copy of the listed files",
             restore: "File copy into the mapped user's same folders, honoring the collision policy",
             implemented_by_module: None,

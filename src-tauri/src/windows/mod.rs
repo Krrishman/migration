@@ -164,10 +164,9 @@ mod platform_impl {
                 let account_name = native::lookup_account(&sid).unwrap_or(folder_name);
                 let (last_use, confidence) = match (hklm_dword(&key, "LocalProfileLoadTimeHigh"), hklm_dword(&key, "LocalProfileLoadTimeLow")) {
                     (Some(h), Some(l)) if h != 0 => (filetime_to_utc(((h as u64) << 32) | l as u64), Confidence::Medium),
-                    _ => (
-                        std::fs::metadata(path.join("NTUSER.DAT")).and_then(|m| m.modified()).ok().map(chrono::DateTime::<chrono::Utc>::from),
-                        Confidence::Low,
-                    ),
+                    _ => {
+                        (std::fs::metadata(path.join("NTUSER.DAT")).and_then(|m| m.modified()).ok().map(chrono::DateTime::<chrono::Utc>::from), Confidence::Low)
+                    }
                 };
                 let access = if !exists {
                     AccessState::NotFound
@@ -400,7 +399,11 @@ mod platform_impl {
                     continue;
                 }
                 let arch = if arch == "User" {
-                    if string_value(hive, &key, "InstallLocation").is_some_and(|l| l.contains("(x86)")) { "x86" } else { "Unknown" }
+                    if string_value(hive, &key, "InstallLocation").is_some_and(|l| l.contains("(x86)")) {
+                        "x86"
+                    } else {
+                        "Unknown"
+                    }
                 } else {
                     arch
                 };
@@ -419,7 +422,7 @@ mod platform_impl {
                 }));
             }
         }
-        apps.sort_by(|a, b| a.display_name.to_lowercase().cmp(&b.display_name.to_lowercase()));
+        apps.sort_by_key(|a| a.display_name.to_lowercase());
         apps
     }
 }

@@ -30,8 +30,7 @@ pub struct AllowList {
 impl AllowList {
     fn allows_file(&self, rel: &str) -> bool {
         let r = rel.to_lowercase();
-        self.files.iter().any(|f| f.to_lowercase() == r)
-            || self.dirs.iter().any(|d| r.starts_with(&format!("{}/", d.to_lowercase())))
+        self.files.iter().any(|f| f.to_lowercase() == r) || self.dirs.iter().any(|d| r.starts_with(&format!("{}/", d.to_lowercase())))
     }
     fn allows_dir(&self, rel: &str) -> bool {
         let r = rel.to_lowercase();

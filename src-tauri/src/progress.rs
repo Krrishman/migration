@@ -177,11 +177,8 @@ impl TaskTracker {
         self.rate.sample(self.progress.bytes_done, now);
         self.progress.elapsed_ms = now.duration_since(self.started).as_millis() as u64;
         self.progress.bytes_per_second = self.rate.rate();
-        self.progress.eta_seconds = if self.progress.state.is_terminal() {
-            None
-        } else {
-            self.rate.eta_seconds(self.progress.bytes_done, self.progress.bytes_total, now)
-        };
+        self.progress.eta_seconds =
+            if self.progress.state.is_terminal() { None } else { self.rate.eta_seconds(self.progress.bytes_done, self.progress.bytes_total, now) };
         self.last_emit = Some(now);
         self.sink.task(&self.progress);
     }

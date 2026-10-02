@@ -24,7 +24,11 @@ impl DiscoveryModule for SystemInventoryModule {
             ItemPayload::Inventory { name: "machine".into() },
         );
         machine.support = SupportLevel::InventoryOnly;
-        machine.includes = vec!["Computer name, Windows version/build, architecture, time zone".into(), "CPU, memory, drives (size/free space), network adapter names".into(), "Domain/workgroup/Azure AD join indicator".into()];
+        machine.includes = vec![
+            "Computer name, Windows version/build, architecture, time zone".into(),
+            "CPU, memory, drives (size/free space), network adapter names".into(),
+            "Domain/workgroup/Azure AD join indicator".into(),
+        ];
         machine.excludes = vec!["IP configuration, Wi-Fi profiles and keys, product keys, any credentials".into()];
         machine.restore_notes = vec!["Reference only. Used in reports to compare source and destination PCs.".into()];
         machine.access = AccessState::Accessible;
@@ -46,7 +50,9 @@ impl DiscoveryModule for SystemInventoryModule {
         profiles.access = AccessState::Accessible;
         profiles.includes = vec!["Account names, SIDs, profile paths, approximate last use".into()];
         profiles.excludes = vec!["Passwords, password hashes, registry hives".into()];
-        profiles.warnings.push(Warning::info(WarningCode::PrivacySensitive, "Last-use times are shown for planning only and are labelled with a confidence level."));
+        profiles
+            .warnings
+            .push(Warning::info(WarningCode::PrivacySensitive, "Last-use times are shown for planning only and are labelled with a confidence level."));
         apply_default_selection(&mut profiles, None);
         acc.items.push(profiles);
 
@@ -65,7 +71,8 @@ impl DiscoveryModule for SystemInventoryModule {
             item.support = SupportLevel::Unsupported;
             item.access = AccessState::AccessDenied;
             item.requires_admin = true;
-            item.warnings.push(Warning::warn(WarningCode::AdminRequired, "Administrator rights are required to read this profile. Access controls are never bypassed."));
+            item.warnings
+                .push(Warning::warn(WarningCode::AdminRequired, "Administrator rights are required to read this profile. Access controls are never bypassed."));
             acc.items.push(item);
         }
         if ctx.platform.long_paths_enabled() == Some(false) {
@@ -96,18 +103,29 @@ impl DiscoveryModule for PrintersModule {
             let (support, notes, desc): (SupportLevel, Vec<String>, &str) = match p.connection {
                 PrinterConnection::Shared => (
                     SupportLevel::Supported,
-                    vec![format!("Reconnect to {} after confirmation. Windows may download the driver from the print server per its policy.", p.unc_path.clone().unwrap_or_else(|| p.name.clone()))],
+                    vec![format!(
+                        "Reconnect to {} after confirmation. Windows may download the driver from the print server per its policy.",
+                        p.unc_path.clone().unwrap_or_else(|| p.name.clone())
+                    )],
                     "Shared printer connection (UNC).",
                 ),
                 PrinterConnection::Network => (
                     SupportLevel::Partial,
                     vec![
-                        format!("Recreate a TCP/IP port for {} and add the printer only if the driver \"{}\" is already installed on the destination.", p.host_address.clone().unwrap_or_default(), p.driver_name),
+                        format!(
+                            "Recreate a TCP/IP port for {} and add the printer only if the driver \"{}\" is already installed on the destination.",
+                            p.host_address.clone().unwrap_or_default(),
+                            p.driver_name
+                        ),
                         "Drivers are never installed or copied automatically.".into(),
                     ],
                     "Network (TCP/IP) printer.",
                 ),
-                PrinterConnection::Virtual => (SupportLevel::InventoryOnly, vec!["Built-in virtual printer; present on the destination already.".into()], "Virtual printer (PDF/XPS/OneNote/Fax)."),
+                PrinterConnection::Virtual => (
+                    SupportLevel::InventoryOnly,
+                    vec!["Built-in virtual printer; present on the destination already.".into()],
+                    "Virtual printer (PDF/XPS/OneNote/Fax).",
+                ),
                 _ => (
                     SupportLevel::InventoryOnly,
                     vec!["Connect the device to the destination PC and install the manufacturer's driver. A checklist is included in the report.".into()],
@@ -179,13 +197,12 @@ impl DiscoveryModule for NetworkDrivesModule {
             item.item_count = Some(1);
             item.includes = vec!["Drive letter, UNC path, provider, reconnect-at-sign-in flag, label".into()];
             item.excludes = vec!["Credentials: Windows prompts for them on the destination if needed".into()];
-            item.restore_notes = vec![format!(
-                "Recreate {} → {}{} after confirmation.",
-                d.letter,
-                d.unc_path,
-                if d.persistent { " (reconnect at sign-in)" } else { "" }
-            )];
-            item.warnings.push(Warning::info(WarningCode::CredentialsNotMigrated, "Saved credentials are not migrated; Windows will ask for them if the share requires it."));
+            item.restore_notes =
+                vec![format!("Recreate {} → {}{} after confirmation.", d.letter, d.unc_path, if d.persistent { " (reconnect at sign-in)" } else { "" })];
+            item.warnings.push(Warning::info(
+                WarningCode::CredentialsNotMigrated,
+                "Saved credentials are not migrated; Windows will ask for them if the share requires it.",
+            ));
             apply_default_selection(&mut item, None);
             acc.items.push(item);
         }

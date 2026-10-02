@@ -10,8 +10,8 @@ use std::path::{Component, Path, PathBuf};
 
 /// Windows reserved device names that cannot be used as file names.
 const RESERVED_NAMES: &[&str] = &[
-    "con", "prn", "aux", "nul", "com1", "com2", "com3", "com4", "com5", "com6", "com7", "com8", "com9",
-    "lpt1", "lpt2", "lpt3", "lpt4", "lpt5", "lpt6", "lpt7", "lpt8", "lpt9",
+    "con", "prn", "aux", "nul", "com1", "com2", "com3", "com4", "com5", "com6", "com7", "com8", "com9", "lpt1", "lpt2", "lpt3", "lpt4", "lpt5", "lpt6", "lpt7",
+    "lpt8", "lpt9",
 ];
 
 pub const MAX_PATH_CLASSIC: usize = 260;
@@ -103,12 +103,13 @@ pub fn sanitize_component(name: &str) -> String {
 
 /// Sanitize a computer or account name for use in a bundle folder name.
 pub fn sanitize_dir_name(name: &str) -> String {
-    let s: String = sanitize_component(name)
-        .chars()
-        .map(|c| if c.is_ascii_alphanumeric() || c == '-' || c == '_' || c == '.' { c } else { '_' })
-        .collect();
+    let s: String = sanitize_component(name).chars().map(|c| if c.is_ascii_alphanumeric() || c == '-' || c == '_' || c == '.' { c } else { '_' }).collect();
     let s = s.trim_matches('.').to_string();
-    if s.is_empty() { "unnamed".into() } else { s }
+    if s.is_empty() {
+        "unnamed".into()
+    } else {
+        s
+    }
 }
 
 /// Parse a bundle-relative path coming from a manifest or the UI. Rejects

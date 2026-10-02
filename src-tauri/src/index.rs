@@ -50,7 +50,9 @@ impl BundleIndex {
     }
 
     pub fn list(&self) -> AppResult<Vec<IndexedBundle>> {
-        let mut stmt = self.conn.prepare("SELECT bundle_id, path, computer_name, created_at, status, last_event, updated_at FROM bundles ORDER BY updated_at DESC LIMIT 100")?;
+        let mut stmt = self
+            .conn
+            .prepare("SELECT bundle_id, path, computer_name, created_at, status, last_event, updated_at FROM bundles ORDER BY updated_at DESC LIMIT 100")?;
         let rows = stmt.query_map([], |r| {
             Ok(IndexedBundle {
                 bundle_id: r.get(0)?,

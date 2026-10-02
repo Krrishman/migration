@@ -55,14 +55,7 @@ pub enum TaskState {
 
 impl TaskState {
     pub fn is_terminal(self) -> bool {
-        matches!(
-            self,
-            TaskState::Completed
-                | TaskState::CompletedWithWarnings
-                | TaskState::Skipped
-                | TaskState::Failed
-                | TaskState::Canceled
-        )
+        matches!(self, TaskState::Completed | TaskState::CompletedWithWarnings | TaskState::Skipped | TaskState::Failed | TaskState::Canceled)
     }
 }
 

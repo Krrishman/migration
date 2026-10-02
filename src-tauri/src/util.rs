@@ -60,15 +60,7 @@ impl RateEstimator {
     }
 
     pub fn starting_at(now: Instant) -> Self {
-        Self {
-            started: now,
-            last_sample: now,
-            last_bytes: 0,
-            rate: None,
-            alpha: 0.3,
-            min_elapsed: Duration::from_secs(3),
-            min_bytes: 1024 * 1024,
-        }
+        Self { started: now, last_sample: now, last_bytes: 0, rate: None, alpha: 0.3, min_elapsed: Duration::from_secs(3), min_bytes: 1024 * 1024 }
     }
 
     pub fn sample(&mut self, bytes_done: u64, now: Instant) {
@@ -108,7 +100,11 @@ impl RateEstimator {
         }
         let eta = ((total - bytes_done) as f64 / rate).ceil();
         // Beyond a week the estimate is meaningless.
-        if eta > 7.0 * 24.0 * 3600.0 { None } else { Some(eta as u64) }
+        if eta > 7.0 * 24.0 * 3600.0 {
+            None
+        } else {
+            Some(eta as u64)
+        }
     }
 }
 
@@ -133,7 +129,11 @@ impl CancelToken {
         self.0.load(Ordering::SeqCst)
     }
     pub fn check(&self) -> AppResult<()> {
-        if self.is_canceled() { Err(AppError::Canceled) } else { Ok(()) }
+        if self.is_canceled() {
+            Err(AppError::Canceled)
+        } else {
+            Ok(())
+        }
     }
 }
 
@@ -146,10 +146,7 @@ pub fn write_json_atomic<T: Serialize>(path: &Path, value: &T) -> AppResult<()> 
 }
 
 pub fn write_bytes_atomic(path: &Path, bytes: &[u8]) -> AppResult<()> {
-    let tmp = path.with_extension(format!(
-        "{}.tmp",
-        path.extension().map(|e| e.to_string_lossy().to_string()).unwrap_or_default()
-    ));
+    let tmp = path.with_extension(format!("{}.tmp", path.extension().map(|e| e.to_string_lossy().to_string()).unwrap_or_default()));
     {
         let mut f = std::fs::File::create(&tmp).at(&tmp)?;
         f.write_all(bytes).at(&tmp)?;

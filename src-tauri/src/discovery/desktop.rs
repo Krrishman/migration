@@ -52,7 +52,10 @@ impl DiscoveryModule for DesktopModule {
                 item.includes = vec!["Shortcut files (.lnk/.url) in the user's Start menu Programs folder".into()];
                 item.excludes = vec!["Start menu layout/pins (not portable across Windows versions)".into()];
                 item.restore_notes = vec!["Shortcuts are copied as files. The Windows 11 Start layout and pinned tiles are not restored.".into()];
-                item.warnings.push(Warning::info(WarningCode::VersionDependent, "Start menu layout differs between Windows 10 and 11; only shortcut files are migrated."));
+                item.warnings.push(Warning::info(
+                    WarningCode::VersionDependent,
+                    "Start menu layout differs between Windows 10 and 11; only shortcut files are migrated.",
+                ));
                 measure(&mut item, ctx)?;
                 apply_default_selection(&mut item, Some(user));
                 acc.items.push(item);
@@ -74,8 +77,12 @@ impl DiscoveryModule for DesktopModule {
                 item.opt_in_only = true;
                 item.includes = vec!["Pinned-item shortcut files".into()];
                 item.excludes = vec!["Taskbar layout and order".into()];
-                item.restore_notes = vec!["Copied to \"Migrated Files\\Taskbar shortcuts\" for the user to re-pin. Windows does not support programmatic pinning.".into()];
-                item.warnings.push(Warning::info(WarningCode::VersionDependent, "Taskbar pins cannot be re-applied automatically; the shortcuts are provided for manual pinning."));
+                item.restore_notes =
+                    vec!["Copied to \"Migrated Files\\Taskbar shortcuts\" for the user to re-pin. Windows does not support programmatic pinning.".into()];
+                item.warnings.push(Warning::info(
+                    WarningCode::VersionDependent,
+                    "Taskbar pins cannot be re-applied automatically; the shortcuts are provided for manual pinning.",
+                ));
                 measure(&mut item, ctx)?;
                 acc.items.push(item);
             }
@@ -98,7 +105,10 @@ impl DiscoveryModule for DesktopModule {
                 item.includes = vec!["Quick Access pin list file".into()];
                 item.excludes = vec!["Other jump lists".into()];
                 item.restore_notes = vec!["Best effort: restored only if the destination has no Quick Access customizations; pins pointing to paths that do not exist on the destination are ignored by Explorer.".into()];
-                item.warnings.push(Warning::warn(WarningCode::VersionDependent, "Format is undocumented and may change between Windows builds. Not guaranteed to restore."));
+                item.warnings.push(Warning::warn(
+                    WarningCode::VersionDependent,
+                    "Format is undocumented and may change between Windows builds. Not guaranteed to restore.",
+                ));
                 measure(&mut item, ctx)?;
                 acc.items.push(item);
             }
@@ -120,7 +130,8 @@ impl DiscoveryModule for DesktopModule {
                 item.includes = vec!["Recent-item shortcut files (.lnk)".into()];
                 item.excludes = vec!["Jump list databases".into()];
                 item.restore_notes = vec!["Copied to \"Migrated Files\\Recent items\" for reference only.".into()];
-                item.warnings.push(Warning::warn(WarningCode::PrivacySensitive, "Recent items reveal what the user opened. Only capture with the user's knowledge."));
+                item.warnings
+                    .push(Warning::warn(WarningCode::PrivacySensitive, "Recent items reveal what the user opened. Only capture with the user's knowledge."));
                 measure(&mut item, ctx)?;
                 acc.items.push(item);
             }

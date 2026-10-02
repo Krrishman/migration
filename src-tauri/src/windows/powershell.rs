@@ -20,10 +20,7 @@ fn powershell_exe() -> std::path::PathBuf {
 pub fn run_script(script: &str, env: &[(&str, &str)]) -> AppResult<String> {
     let exe = powershell_exe();
     let mut cmd = Command::new(&exe);
-    cmd.args(["-NoLogo", "-NoProfile", "-NonInteractive", "-Command", "-"])
-        .stdin(Stdio::piped())
-        .stdout(Stdio::piped())
-        .stderr(Stdio::piped());
+    cmd.args(["-NoLogo", "-NoProfile", "-NonInteractive", "-Command", "-"]).stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::piped());
     for (k, v) in env {
         debug_assert!(k.starts_with("MA_"));
         cmd.env(k, v);
@@ -38,9 +35,7 @@ pub fn run_script(script: &str, env: &[(&str, &str)]) -> AppResult<String> {
     }
     let mut child = cmd.spawn().map_err(|e| AppError::AdapterUnavailable(format!("PowerShell could not be started: {e}")))?;
     if let Some(mut stdin) = child.stdin.take() {
-        stdin
-            .write_all(script.as_bytes())
-            .map_err(|e| AppError::AdapterUnavailable(format!("PowerShell stdin: {e}")))?;
+        stdin.write_all(script.as_bytes()).map_err(|e| AppError::AdapterUnavailable(format!("PowerShell stdin: {e}")))?;
     }
     let mut stdout = child.stdout.take().expect("piped");
     let mut stderr = child.stderr.take().expect("piped");

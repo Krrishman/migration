@@ -252,7 +252,8 @@ impl<'a> RestoreService<'a> {
             };
             if !tp.is_current_user && !elevated {
                 action.requires_admin = true;
-                action.blocked_reason = Some(format!("Writing into {}'s profile requires administrator rights. Restart elevated or sign in as that user.", tp.account_name));
+                action.blocked_reason =
+                    Some(format!("Writing into {}'s profile requires administrator rights. Restart elevated or sign in as that user.", tp.account_name));
             }
 
             let target_dir: Option<PathBuf> = match &item.restore_kind {
@@ -300,7 +301,8 @@ impl<'a> RestoreService<'a> {
                     let bm_name = if *browser == BrowserKind::Firefox { "places.sqlite" } else { "Bookmarks" };
                     if let Some(src) = files.iter().find(|f| f.rel == bm_name) {
                         let desktop = self.platform.known_folder(tp, KnownFolder::Desktop).join("Migrated Browser Data");
-                        let base = desktop.join(format!("{} - {} bookmarks.html", browser.label(), crate::security::safe_path::sanitize_component(profile_dir)));
+                        let base =
+                            desktop.join(format!("{} - {} bookmarks.html", browser.label(), crate::security::safe_path::sanitize_component(profile_dir)));
                         let out = match resolve(&base, CollisionPolicy::RenameIncoming, false, "")? {
                             Resolution::Write(p) => p,
                             _ => base.clone(),
@@ -321,12 +323,17 @@ impl<'a> RestoreService<'a> {
                         actions.push((bm, Op::Bookmarks { browser: *browser, source: src.clone(), out_file: out, title: item.display_name.clone() }));
                     }
                     // 2) Optional profile-file restore.
-                    let procs: Vec<&'static str> = default_providers().iter().filter(|p| p.kind() == *browser).flat_map(|p| p.process_names().to_vec()).collect();
+                    let procs: Vec<&'static str> =
+                        default_providers().iter().filter(|p| p.kind() == *browser).flat_map(|p| p.process_names().to_vec()).collect();
                     let running = self.running(&procs);
                     if !running.is_empty() && action.blocked_reason.is_none() {
-                        action.blocked_reason = Some(format!("{} is running on this PC ({}). Close it and refresh the plan.", browser.label(), running.join(", ")));
+                        action.blocked_reason =
+                            Some(format!("{} is running on this PC ({}). Close it and refresh the plan.", browser.label(), running.join(", ")));
                     }
-                    action.warnings.push(Warning::info(WarningCode::CredentialsNotMigrated, "Passwords, cookies and sign-ins were never captured; sign in to browser sync to restore them."));
+                    action.warnings.push(Warning::info(
+                        WarningCode::CredentialsNotMigrated,
+                        "Passwords, cookies and sign-ins were never captured; sign in to browser sync to restore them.",
+                    ));
                     Some(match browser {
                         BrowserKind::Chrome => push_rel(local(self.platform, tp), &format!("Google/Chrome/User Data/{profile_dir}")),
                         BrowserKind::Edge => push_rel(local(self.platform, tp), &format!("Microsoft/Edge/User Data/{profile_dir}")),
@@ -370,15 +377,25 @@ impl<'a> RestoreService<'a> {
                                             a.blocked_reason = Some("Adding a TCP/IP printer requires administrator rights.".into());
                                         }
                                         a.target_path = Some(format!("{host} ({})", p.driver_name));
-                                        a.system_changes.push(SystemChange::AddNetworkPrinter { name: p.name.clone(), host_address: host.clone(), driver_name: p.driver_name.clone(), port_name: port.clone() });
+                                        a.system_changes.push(SystemChange::AddNetworkPrinter {
+                                            name: p.name.clone(),
+                                            host_address: host.clone(),
+                                            driver_name: p.driver_name.clone(),
+                                            port_name: port.clone(),
+                                        });
                                         Op::NetworkPrinter { name: p.name.clone(), host, driver: p.driver_name.clone(), port }
                                     }
                                     other => {
                                         if let Err(e) = other {
                                             a.warnings.push(Warning::warn(WarningCode::AdapterUnavailable, format!("Could not check drivers: {e}")));
                                         }
-                                        a.warnings.push(Warning::warn(WarningCode::DriverRequired, format!("Driver \"{}\" is not installed on this PC. Drivers are never installed automatically.", p.driver_name)));
-                                        a.system_changes.push(SystemChange::ManualChecklist { text: format!("Install \"{}\" from the manufacturer, then add printer {} at {host}.", p.driver_name, p.name) });
+                                        a.warnings.push(Warning::warn(
+                                            WarningCode::DriverRequired,
+                                            format!("Driver \"{}\" is not installed on this PC. Drivers are never installed automatically.", p.driver_name),
+                                        ));
+                                        a.system_changes.push(SystemChange::ManualChecklist {
+                                            text: format!("Install \"{}\" from the manufacturer, then add printer {} at {host}.", p.driver_name, p.name),
+                                        });
                                         Op::Manual
                                     }
                                 }
@@ -389,7 +406,10 @@ impl<'a> RestoreService<'a> {
                             }
                             _ => {
                                 a.system_changes.push(SystemChange::ManualChecklist {
-                                    text: format!("Connect \"{}\" ({:?}) and install driver \"{}\" from the manufacturer; print a test page.", p.name, p.connection, p.driver_name),
+                                    text: format!(
+                                        "Connect \"{}\" ({:?}) and install driver \"{}\" from the manufacturer; print a test page.",
+                                        p.name, p.connection, p.driver_name
+                                    ),
                                 });
                                 Op::Manual
                             }
@@ -484,7 +504,8 @@ impl<'a> RestoreService<'a> {
             return Err(AppError::Integrity("bundle verification failed; restore is not allowed".into()));
         }
         let key: Option<BundleKey> = if opened.manifest.encryption.enabled {
-            let p = req.passphrase.as_deref().filter(|p| !p.is_empty()).ok_or_else(|| AppError::Crypto("this bundle is encrypted; enter its passphrase".into()))?;
+            let p =
+                req.passphrase.as_deref().filter(|p| !p.is_empty()).ok_or_else(|| AppError::Crypto("this bundle is encrypted; enter its passphrase".into()))?;
             Some(encryption::unlock_bundle(&opened.manifest.encryption, p)?)
         } else {
             None
@@ -492,7 +513,9 @@ impl<'a> RestoreService<'a> {
         let (mut plan, ops) = self.build(opened, req)?;
         plan.dry_run = false;
         if plan.warnings.iter().any(|w| w.severity == Severity::Error) {
-            return Err(AppError::InvalidRequest(plan.warnings.iter().filter(|w| w.severity == Severity::Error).map(|w| w.message.clone()).collect::<Vec<_>>().join(" ")));
+            return Err(AppError::InvalidRequest(
+                plan.warnings.iter().filter(|w| w.severity == Severity::Error).map(|w| w.message.clone()).collect::<Vec<_>>().join(" "),
+            ));
         }
         let restore_id = uuid::Uuid::new_v4().to_string();
         let stamp = started.format("%Y%m%d%H%M%S").to_string();
@@ -544,9 +567,12 @@ impl<'a> RestoreService<'a> {
             }
             let replace_ok = req.replace_confirmed.contains(&action.category);
             let result = match op {
-                Op::CopyTree { item, files, target_dir } => self.copy_tree(&opened.layout, &item, &files, &target_dir, action.policy, replace_ok, &stamp, key.as_ref(), &mut t, &mut s, &logger),
+                Op::CopyTree { item, files, target_dir } => {
+                    self.copy_tree(&opened.layout, &item, &files, &target_dir, action.policy, replace_ok, &stamp, key.as_ref(), &mut t, &mut s, &logger)
+                }
                 Op::Wallpaper { item, files, target_dir, apply } => {
-                    let r = self.copy_tree(&opened.layout, &item, &files, &target_dir, action.policy, replace_ok, &stamp, key.as_ref(), &mut t, &mut s, &logger);
+                    let r =
+                        self.copy_tree(&opened.layout, &item, &files, &target_dir, action.policy, replace_ok, &stamp, key.as_ref(), &mut t, &mut s, &logger);
                     match (r, apply, files.first()) {
                         (Ok(()), true, Some(f)) => {
                             let p = push_rel(target_dir, &f.rel);
@@ -559,10 +585,13 @@ impl<'a> RestoreService<'a> {
                         (r, _, _) => r,
                     }
                 }
-                Op::Bookmarks { browser, source, out_file, title } => self.export_bookmarks(&opened.layout, browser, &source, &out_file, &title, key.as_ref(), &mut t, &mut s),
-                Op::MapDrive(d) => {
-                    self.platform.map_drive(&d.letter, &d.unc_path, d.persistent).map(|_| logger.info(Some(&action.id), format!("Mapped {} to {}", d.letter, d.unc_path)))
+                Op::Bookmarks { browser, source, out_file, title } => {
+                    self.export_bookmarks(&opened.layout, browser, &source, &out_file, &title, key.as_ref(), &mut t, &mut s)
                 }
+                Op::MapDrive(d) => self
+                    .platform
+                    .map_drive(&d.letter, &d.unc_path, d.persistent)
+                    .map(|_| logger.info(Some(&action.id), format!("Mapped {} to {}", d.letter, d.unc_path))),
                 Op::SharedPrinter(unc) => self.platform.connect_shared_printer(&unc).map(|_| logger.info(Some(&action.id), format!("Connected {unc}"))),
                 Op::NetworkPrinter { name, host, driver, port } => {
                     self.platform.add_network_printer(&name, &host, &driver, &port).map(|_| logger.info(Some(&action.id), format!("Added printer {name}")))

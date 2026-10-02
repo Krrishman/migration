@@ -141,9 +141,9 @@ impl Checkpoint {
 
     /// All completed files for a task (used to build hash lists on resume).
     pub fn done_files(&self, task_id: &str) -> AppResult<Vec<FileRecord>> {
-        let mut stmt = self.conn.prepare(
-            "SELECT rel, size, mtime, stored_path, stored_hash, plain_hash, stored_size FROM files WHERE task_id=?1 AND status='done' ORDER BY rel",
-        )?;
+        let mut stmt = self
+            .conn
+            .prepare("SELECT rel, size, mtime, stored_path, stored_hash, plain_hash, stored_size FROM files WHERE task_id=?1 AND status='done' ORDER BY rel")?;
         let rows = stmt.query_map(params![task_id], |r| {
             Ok(FileRecord {
                 task_id: task_id.to_string(),

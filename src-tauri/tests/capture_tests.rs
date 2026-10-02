@@ -88,7 +88,16 @@ fn default_capture_produces_verified_bundle_without_secrets() {
     let name = layout.root.file_name().unwrap().to_string_lossy().to_string();
     assert!(name.starts_with("ACCT-PC-07-"), "{name}");
     assert_eq!(layout.root.parent().unwrap().file_name().unwrap(), "migrations");
-    for f in ["manifest.json", "manifest.sha256", "report.html", "report.json", "summary-report.html", "logs/capture.log.jsonl", "inventory/machine.json", "system/printers.json"] {
+    for f in [
+        "manifest.json",
+        "manifest.sha256",
+        "report.html",
+        "report.json",
+        "summary-report.html",
+        "logs/capture.log.jsonl",
+        "inventory/machine.json",
+        "system/printers.json",
+    ] {
         assert!(layout.root.join(f).is_file(), "missing {f}");
     }
     let (manifest, hash_ok) = bundle::read_manifest(&layout).unwrap();
@@ -135,7 +144,20 @@ fn sensitive_data_is_excluded_even_when_everything_is_selected() {
         let bytes = std::fs::read(f).unwrap();
         assert!(!contains(&bytes, SECRET_MARKER), "secret leaked into {}", f.display());
         let name = f.file_name().unwrap().to_string_lossy().to_lowercase();
-        for banned in ["login data", "cookies", "web data", "local state", "logins.json", "key4.db", "cookies.sqlite", "cert9.db", "ntuser.dat", "id_ed25519", "wifi.xml", "sam"] {
+        for banned in [
+            "login data",
+            "cookies",
+            "web data",
+            "local state",
+            "logins.json",
+            "key4.db",
+            "cookies.sqlite",
+            "cert9.db",
+            "ntuser.dat",
+            "id_ed25519",
+            "wifi.xml",
+            "sam",
+        ] {
             assert_ne!(name, banned, "banned file captured: {}", f.display());
         }
     }
@@ -329,13 +351,19 @@ fn malformed_manifests_are_rejected() {
     };
     assert!(bundle::parse_manifest(b"not json").is_err());
     assert!(mutate(&|v| v["schema_version"] = "2.0".into()).is_err());
-    assert!(mutate(&|v| { v.as_object_mut().unwrap().remove("schema_version"); }).is_err());
+    assert!(mutate(&|v| {
+        v.as_object_mut().unwrap().remove("schema_version");
+    })
+    .is_err());
     assert!(mutate(&|v| v["bundle_id"] = "not-a-uuid".into()).is_err());
     assert!(mutate(&|v| v["items"][0]["bundle_path"] = "../../Windows/System32".into()).is_err());
     assert!(mutate(&|v| v["items"][0]["bundle_path"] = "C:\\Windows".into()).is_err());
     assert!(mutate(&|v| v["items"][0]["hash_list"] = "users/x.sha256".into()).is_err());
     assert!(mutate(&|v| v["items"][0]["hash_list_sha256"] = "zz".into()).is_err());
-    assert!(mutate(&|v| { v.as_object_mut().unwrap().remove("items"); }).is_err());
+    assert!(mutate(&|v| {
+        v.as_object_mut().unwrap().remove("items");
+    })
+    .is_err());
     assert!(mutate(&|v| v["encryption"]["enabled"] = true.into()).is_err());
     assert!(mutate(&|v| v["status"] = "exploded".into()).is_err());
 }

@@ -107,10 +107,14 @@ impl DiscoveryModule for InstalledAppsModule {
         item.support = SupportLevel::InventoryOnly;
         item.item_count = Some(apps.len() as u64);
         item.access = AccessState::Accessible;
-        item.includes = vec!["Application inventory report".into(), "Recommended reinstall checklist".into(), format!("{with_plugin} app(s) have a settings plug-in")];
+        item.includes =
+            vec!["Application inventory report".into(), "Recommended reinstall checklist".into(), format!("{with_plugin} app(s) have a settings plug-in")];
         item.excludes = vec!["Program files, installers, license/product keys and activation data are never copied".into()];
         item.restore_notes = vec!["Reinstall applications on the destination from their official sources, then restore settings plug-ins.".into()];
-        item.warnings.push(Warning::info(WarningCode::Other, "Uninstall commands are recorded only in the technician report (marked advanced) and are redacted from the shareable summary."));
+        item.warnings.push(Warning::info(
+            WarningCode::Other,
+            "Uninstall commands are recorded only in the technician report (marked advanced) and are redacted from the shareable summary.",
+        ));
         apply_default_selection(&mut item, None);
         acc.items.push(item);
         acc.applications = apps;
@@ -150,7 +154,8 @@ mod tests {
 
     #[test]
     fn checklist_skips_runtimes_and_drivers() {
-        let apps: Vec<_> = ["Google Chrome", "Microsoft Visual C++ 2015-2022 Redistributable", "NVIDIA Graphics Driver"].iter().map(|n| annotate(app(n))).collect();
+        let apps: Vec<_> =
+            ["Google Chrome", "Microsoft Visual C++ 2015-2022 Redistributable", "NVIDIA Graphics Driver"].iter().map(|n| annotate(app(n))).collect();
         let c = reinstall_checklist(&apps);
         assert_eq!(c.len(), 1);
         assert!(c[0].starts_with("[ ] Google Chrome"));
