@@ -45,6 +45,7 @@ export function AuthorizationDialog() {
       onOpenChange={() => {
         /* acknowledgement is required; the dialog cannot be dismissed */
       }}
+      dismissible={false}
       title="Authorized use only"
       description={`Migration Assistant ${status.app_version} on ${status.computer_name}`}
       wide

@@ -145,7 +145,9 @@ export function Dialog({
   children,
   footer,
   wide,
+  dismissible = true,
 }: {
+  dismissible?: boolean;
   open: boolean;
   onOpenChange: (o: boolean) => void;
   title: string;
@@ -159,6 +161,8 @@ export function Dialog({
       <RD.Portal>
         <RD.Overlay className="fixed inset-0 z-40 bg-black/40" />
         <RD.Content
+          onEscapeKeyDown={dismissible ? undefined : (e) => e.preventDefault()}
+          onPointerDownOutside={dismissible ? undefined : (e) => e.preventDefault()}
           className={clsx(
             "fixed left-1/2 top-1/2 z-50 max-h-[88vh] w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-xl border border-border bg-surface p-6 shadow-xl focus:outline-none",
             wide ? "max-w-3xl" : "max-w-lg",
@@ -169,11 +173,13 @@ export function Dialog({
               <RD.Title className="text-lg font-semibold">{title}</RD.Title>
               {description ? <RD.Description className="mt-1 text-[13px] text-muted">{description}</RD.Description> : <RD.Description className="sr-only">{title}</RD.Description>}
             </div>
-            <RD.Close asChild>
-              <Button variant="ghost" size="sm" aria-label="Close">
-                <X className="h-4 w-4" />
-              </Button>
-            </RD.Close>
+            {dismissible && (
+              <RD.Close asChild>
+                <Button variant="ghost" size="sm" aria-label="Close">
+                  <X className="h-4 w-4" />
+                </Button>
+              </RD.Close>
+            )}
           </div>
           <div className="space-y-3">{children}</div>
           {footer && <div className="mt-6 flex flex-wrap justify-end gap-2">{footer}</div>}
