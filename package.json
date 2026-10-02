@@ -1,0 +1,49 @@
+{
+  "name": "migration-assistant",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Authorized, local-only Windows PC-to-PC profile migration (Tauri 2 + React)",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:rust": "cargo test --manifest-path src-tauri/Cargo.toml --no-default-features",
+    "test:all": "npm run typecheck && npm test && npm run test:rust",
+    "tauri": "tauri",
+    "tauri:dev:fixture": "tauri dev -- -- --fixture ../fixtures/source-pc",
+    "build:portable": "tauri build --no-bundle",
+    "screenshots": "node scripts/screenshots.mjs",
+    "fixtures": "python3 scripts/generate_fixtures.py"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@tauri-apps/api": "^2.9.0",
+    "@tauri-apps/plugin-dialog": "^2.4.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.460.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.9.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "jsdom": "^25.0.1",
+    "playwright-core": "^1.56.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.9.3",
+    "vite": "^6.4.0",
+    "vitest": "^3.2.0"
+  }
+}

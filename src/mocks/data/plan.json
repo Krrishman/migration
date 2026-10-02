@@ -1,0 +1,819 @@
+{
+ "plan_id": "c60b9ec7-df29-4710-8745-31ce62cc1991",
+ "bundle_id": "6a7a9246-b79e-4d8e-bdb0-a698a2082855",
+ "dry_run": true,
+ "actions": [
+  {
+   "id": "restore:folder:S-1-5-21-1004336348-1177238915-682003330-1104:documents",
+   "item_id": "folder:S-1-5-21-1004336348-1177238915-682003330-1104:documents",
+   "category": "users_files",
+   "display_name": "Documents",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\Documents",
+   "files": 4,
+   "bytes": 353520000,
+   "conflicts": 1,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [
+    {
+     "code": "conflict",
+     "severity": "warning",
+     "message": "1 file(s) already exist at the destination; policy: SkipExisting."
+    }
+   ],
+   "notes": [
+    "Restored into the destination user's Documents folder (respecting its redirection)."
+   ]
+  },
+  {
+   "id": "restore:folder:S-1-5-21-1004336348-1177238915-682003330-1104:downloads",
+   "item_id": "folder:S-1-5-21-1004336348-1177238915-682003330-1104:downloads",
+   "category": "users_files",
+   "display_name": "Downloads",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\Downloads",
+   "files": 1,
+   "bytes": 393216000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Restored into the destination user's Downloads folder (respecting its redirection)."
+   ]
+  },
+  {
+   "id": "restore:folder:S-1-5-21-1004336348-1177238915-682003330-1104:pictures",
+   "item_id": "folder:S-1-5-21-1004336348-1177238915-682003330-1104:pictures",
+   "category": "users_files",
+   "display_name": "Pictures",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\Pictures",
+   "files": 2,
+   "bytes": 246360000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Restored into the destination user's Pictures folder (respecting its redirection)."
+   ]
+  },
+  {
+   "id": "restore:folder:S-1-5-21-1004336348-1177238915-682003330-1104:videos",
+   "item_id": "folder:S-1-5-21-1004336348-1177238915-682003330-1104:videos",
+   "category": "users_files",
+   "display_name": "Videos",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\Videos",
+   "files": 1,
+   "bytes": 0,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Restored into the destination user's Videos folder (respecting its redirection)."
+   ]
+  },
+  {
+   "id": "restore:folder:S-1-5-21-1004336348-1177238915-682003330-1104:music",
+   "item_id": "folder:S-1-5-21-1004336348-1177238915-682003330-1104:music",
+   "category": "users_files",
+   "display_name": "Music",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\Music",
+   "files": 1,
+   "bytes": 192000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Restored into the destination user's Music folder (respecting its redirection)."
+   ]
+  },
+  {
+   "id": "restore:folder:S-1-5-21-1004336348-1177238915-682003330-1104:favorites",
+   "item_id": "folder:S-1-5-21-1004336348-1177238915-682003330-1104:favorites",
+   "category": "users_files",
+   "display_name": "Favorites",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\Favorites",
+   "files": 1,
+   "bytes": 1368000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Restored into the destination user's Favorites folder (respecting its redirection)."
+   ]
+  },
+  {
+   "id": "restore:folder:S-1-5-21-1004336348-1177238915-682003330-1104:desktop",
+   "item_id": "folder:S-1-5-21-1004336348-1177238915-682003330-1104:desktop",
+   "category": "desktop_shortcuts",
+   "display_name": "Desktop",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\Desktop",
+   "files": 2,
+   "bytes": 1200000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Restored into the destination user's Desktop. Shortcuts to applications that are not installed will not work until the app is reinstalled."
+   ]
+  },
+  {
+   "id": "restore:startmenu:S-1-5-21-1004336348-1177238915-682003330-1104:programs",
+   "item_id": "startmenu:S-1-5-21-1004336348-1177238915-682003330-1104:programs",
+   "category": "desktop_shortcuts",
+   "display_name": "Start menu shortcuts (user)",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs",
+   "files": 1,
+   "bytes": 336000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Shortcuts are copied as files. The Windows 11 Start layout and pinned tiles are not restored."
+   ]
+  },
+  {
+   "id": "restore:publicdesktop:machine:public",
+   "item_id": "publicdesktop:machine:public",
+   "category": "desktop_shortcuts",
+   "display_name": "Public Desktop",
+   "source_user": null,
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\Public\\Desktop",
+   "files": 1,
+   "bytes": 1320000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": true,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": "The Public Desktop is shared by all users; restoring it requires administrator rights.",
+   "warnings": [],
+   "notes": [
+    "Writing to the Public Desktop on the destination requires administrator rights."
+   ]
+  },
+  {
+   "id": "bookmarks:browser-chrome:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_google_chrome_user_data-default",
+   "item_id": "browser-chrome:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_google_chrome_user_data-default",
+   "category": "browsers",
+   "display_name": "Google Chrome \u2013 Ann (Work) (Default) \u2013 bookmarks export (HTML)",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\Desktop\\Migrated Browser Data\\Google Chrome - Default bookmarks.html",
+   "files": 1,
+   "bytes": 35280000,
+   "conflicts": 0,
+   "policy": "rename_incoming",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Creates an importable bookmarks file; existing browser data is not touched."
+   ]
+  },
+  {
+   "id": "bookmarks:browser-chrome:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_google_chrome_user_data-profile_1",
+   "item_id": "browser-chrome:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_google_chrome_user_data-profile_1",
+   "category": "browsers",
+   "display_name": "Google Chrome \u2013 Personal (Profile 1) \u2013 bookmarks export (HTML)",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\Desktop\\Migrated Browser Data\\Google Chrome - Profile 1 bookmarks.html",
+   "files": 1,
+   "bytes": 20856000,
+   "conflicts": 0,
+   "policy": "rename_incoming",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Creates an importable bookmarks file; existing browser data is not touched."
+   ]
+  },
+  {
+   "id": "bookmarks:browser-edge:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_microsoft_edge_user_data-default",
+   "item_id": "browser-edge:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_microsoft_edge_user_data-default",
+   "category": "browsers",
+   "display_name": "Microsoft Edge \u2013 Profile 1 (Default) \u2013 bookmarks export (HTML)",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\Desktop\\Migrated Browser Data\\Microsoft Edge - Default bookmarks.html",
+   "files": 1,
+   "bytes": 21528000,
+   "conflicts": 0,
+   "policy": "rename_incoming",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Creates an importable bookmarks file; existing browser data is not touched."
+   ]
+  },
+  {
+   "id": "bookmarks:browser-firefox:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_roaming_mozilla_firefox-x7k2.default-release",
+   "item_id": "browser-firefox:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_roaming_mozilla_firefox-x7k2.default-release",
+   "category": "browsers",
+   "display_name": "Mozilla Firefox \u2013 default-release (x7k2.default-release) \u2013 bookmarks export (HTML)",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\Desktop\\Migrated Browser Data\\Mozilla Firefox - x7k2.default-release bookmarks.html",
+   "files": 1,
+   "bytes": 294912000,
+   "conflicts": 0,
+   "policy": "rename_incoming",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Creates an importable bookmarks file; existing browser data is not touched."
+   ]
+  },
+  {
+   "id": "restore:browser-chrome:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_google_chrome_user_data-default",
+   "item_id": "browser-chrome:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_google_chrome_user_data-default",
+   "category": "browsers",
+   "display_name": "Google Chrome \u2013 Ann (Work) (Default)",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\AppData\\Local\\Google\\Chrome\\User Data\\Default",
+   "files": 5,
+   "bytes": 64008000,
+   "conflicts": 2,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [
+    {
+     "code": "credentials_not_migrated",
+     "severity": "info",
+     "message": "Passwords, cookies and sign-ins were never captured; sign in to browser sync to restore them."
+    },
+    {
+     "code": "conflict",
+     "severity": "warning",
+     "message": "2 file(s) already exist at the destination; policy: SkipExisting."
+    }
+   ],
+   "notes": [
+    "Bookmarks are also exported to an importable bookmarks HTML file on the destination Desktop.",
+    "Saved passwords, cookies and sign-ins are protected by Windows/browser encryption and cannot be migrated. Use the browser's own account sync or password export.",
+    "Extensions may need to be re-enabled or reinstalled from the store."
+   ]
+  },
+  {
+   "id": "restore:browser-chrome:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_google_chrome_user_data-profile_1",
+   "item_id": "browser-chrome:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_google_chrome_user_data-profile_1",
+   "category": "browsers",
+   "display_name": "Google Chrome \u2013 Personal (Profile 1)",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 1",
+   "files": 2,
+   "bytes": 21648000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [
+    {
+     "code": "credentials_not_migrated",
+     "severity": "info",
+     "message": "Passwords, cookies and sign-ins were never captured; sign in to browser sync to restore them."
+    }
+   ],
+   "notes": [
+    "Bookmarks are also exported to an importable bookmarks HTML file on the destination Desktop.",
+    "Saved passwords, cookies and sign-ins are protected by Windows/browser encryption and cannot be migrated. Use the browser's own account sync or password export.",
+    "Extensions may need to be re-enabled or reinstalled from the store."
+   ]
+  },
+  {
+   "id": "restore:browser-edge:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_microsoft_edge_user_data-default",
+   "item_id": "browser-edge:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_microsoft_edge_user_data-default",
+   "category": "browsers",
+   "display_name": "Microsoft Edge \u2013 Profile 1 (Default)",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\AppData\\Local\\Microsoft\\Edge\\User Data\\Default",
+   "files": 2,
+   "bytes": 22344000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [
+    {
+     "code": "credentials_not_migrated",
+     "severity": "info",
+     "message": "Passwords, cookies and sign-ins were never captured; sign in to browser sync to restore them."
+    }
+   ],
+   "notes": [
+    "Bookmarks are also exported to an importable bookmarks HTML file on the destination Desktop.",
+    "Saved passwords, cookies and sign-ins are protected by Windows/browser encryption and cannot be migrated. Use the browser's own account sync or password export.",
+    "Extensions may need to be re-enabled or reinstalled from the store."
+   ]
+  },
+  {
+   "id": "restore:browser-firefox:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_roaming_mozilla_firefox-x7k2.default-release",
+   "item_id": "browser-firefox:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_roaming_mozilla_firefox-x7k2.default-release",
+   "category": "browsers",
+   "display_name": "Mozilla Firefox \u2013 default-release (x7k2.default-release)",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\Migrated Files\\Mozilla Firefox profile x7k2.default-release",
+   "files": 2,
+   "bytes": 296736000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [
+    {
+     "code": "credentials_not_migrated",
+     "severity": "info",
+     "message": "Passwords, cookies and sign-ins were never captured; sign in to browser sync to restore them."
+    }
+   ],
+   "notes": [
+    "Bookmarks are exported to an importable bookmarks HTML file on the destination Desktop.",
+    "Profile files can be restored into a new or existing Firefox profile while Firefox is closed.",
+    "Saved passwords and sign-ins are not migrated; use Firefox Sync or Firefox's own password export.",
+    "Profile files are placed in Migrated Files. In Firefox, open about:profiles > Create a New Profile > Choose Folder to use them."
+   ]
+  },
+  {
+   "id": "restore:outlook:S-1-5-21-1004336348-1177238915-682003330-1104:signatures",
+   "item_id": "outlook:S-1-5-21-1004336348-1177238915-682003330-1104:signatures",
+   "category": "outlook_email",
+   "display_name": "Outlook signatures",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\AppData\\Roaming\\Microsoft\\Signatures",
+   "files": 3,
+   "bytes": 3240000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Copied to %APPDATA%\\Microsoft\\Signatures for the mapped user. Re-select default signatures in Outlook > Options > Mail > Signatures.",
+    "New Outlook / Outlook on the web store signatures in the cloud and do not use these files."
+   ]
+  },
+  {
+   "id": "restore:outlook:S-1-5-21-1004336348-1177238915-682003330-1104:templates",
+   "item_id": "outlook:S-1-5-21-1004336348-1177238915-682003330-1104:templates",
+   "category": "outlook_email",
+   "display_name": "Outlook templates (.oft)",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\AppData\\Roaming\\Microsoft\\Templates",
+   "files": 1,
+   "bytes": 480000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Copied as files to the mapped user's Templates folder."
+   ]
+  },
+  {
+   "id": "restore:outlook:S-1-5-21-1004336348-1177238915-682003330-1104:stationery",
+   "item_id": "outlook:S-1-5-21-1004336348-1177238915-682003330-1104:stationery",
+   "category": "outlook_email",
+   "display_name": "Outlook stationery",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\AppData\\Roaming\\Microsoft\\Stationery",
+   "files": 1,
+   "bytes": 1320000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Copied as files to the mapped user's Stationery folder."
+   ]
+  },
+  {
+   "id": "restore:outlook:S-1-5-21-1004336348-1177238915-682003330-1104:profiles",
+   "item_id": "outlook:S-1-5-21-1004336348-1177238915-682003330-1104:profiles",
+   "category": "outlook_email",
+   "display_name": "Outlook mail profile names",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": null,
+   "files": 0,
+   "bytes": 0,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": false,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Inventory only: included in reports, nothing is written to this PC.",
+    "Recreate the mail profile by signing in to Outlook on the destination (Autodiscover configures most accounts)."
+   ]
+  },
+  {
+   "id": "restore:pst:S-1-5-21-1004336348-1177238915-682003330-1104:archive_2022.pst",
+   "item_id": "pst:S-1-5-21-1004336348-1177238915-682003330-1104:archive_2022.pst",
+   "category": "outlook_email",
+   "display_name": "Archive 2022.pst (Outlook data file)",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\Documents\\Outlook Files",
+   "files": 1,
+   "bytes": 98400000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Copied to Documents\\Outlook Files for the mapped user. Open it in Outlook via File > Open & Export > Open Outlook Data File.",
+    "Password-protected PSTs keep their password; Migration Assistant cannot and does not remove it."
+   ]
+  },
+  {
+   "id": "restore:wallpaper:S-1-5-21-1004336348-1177238915-682003330-1104:current",
+   "item_id": "wallpaper:S-1-5-21-1004336348-1177238915-682003330-1104:current",
+   "category": "personalization",
+   "display_name": "Desktop wallpaper",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\Pictures\\Migrated Wallpaper",
+   "files": 1,
+   "bytes": 49536000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [
+    {
+     "type": "registry_value",
+     "hive": "HKCU",
+     "key": "Control Panel\\Desktop",
+     "value_name": "WallPaper",
+     "value": "C:\\Users\\annexample\\Pictures\\Migrated Wallpaper\\aurora.jpg"
+    }
+   ],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Image copied to Pictures\\Migrated Wallpaper for the mapped user.",
+    "Applying it as wallpaper writes HKCU\\Control Panel\\Desktop\\WallPaper for the signed-in user only, after confirmation."
+   ]
+  },
+  {
+   "id": "restore:themes:S-1-5-21-1004336348-1177238915-682003330-1104:custom",
+   "item_id": "themes:S-1-5-21-1004336348-1177238915-682003330-1104:custom",
+   "category": "personalization",
+   "display_name": "Saved themes",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\AppData\\Local\\Microsoft\\Windows\\Themes",
+   "files": 1,
+   "bytes": 4032000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Theme files are copied; double-click a .theme file on the destination to apply it."
+   ]
+  },
+  {
+   "id": "restore:drive:machine:h_",
+   "item_id": "drive:machine:h_",
+   "category": "network_drives",
+   "display_name": "H: \u2192 \\\\fs01.contoso.example\\home$\\ann",
+   "source_user": null,
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "H: \u2192 \\\\fs01.contoso.example\\home$\\ann",
+   "files": 0,
+   "bytes": 0,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [
+    {
+     "type": "map_drive",
+     "letter": "H:",
+     "unc_path": "\\\\fs01.contoso.example\\home$\\ann",
+     "persistent": true
+    }
+   ],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Recreate H: \u2192 \\\\fs01.contoso.example\\home$\\ann (reconnect at sign-in) after confirmation."
+   ]
+  },
+  {
+   "id": "restore:drive:machine:s_",
+   "item_id": "drive:machine:s_",
+   "category": "network_drives",
+   "display_name": "S: \u2192 \\\\fs01.contoso.example\\shared",
+   "source_user": null,
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "S: \u2192 \\\\fs01.contoso.example\\shared",
+   "files": 0,
+   "bytes": 0,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [
+    {
+     "type": "map_drive",
+     "letter": "S:",
+     "unc_path": "\\\\fs01.contoso.example\\shared",
+     "persistent": true
+    }
+   ],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Recreate S: \u2192 \\\\fs01.contoso.example\\shared (reconnect at sign-in) after confirmation."
+   ]
+  },
+  {
+   "id": "printer:printer:machine:hp_laserjet_4th_floor",
+   "item_id": "printer:machine:hp_laserjet_4th_floor",
+   "category": "printers",
+   "display_name": "HP LaserJet 4th Floor",
+   "source_user": null,
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "10.20.4.25 (HP Universal Printing PCL 6)",
+   "files": 0,
+   "bytes": 0,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": true,
+   "requires_confirmation": true,
+   "system_changes": [
+    {
+     "type": "add_network_printer",
+     "name": "HP LaserJet 4th Floor",
+     "host_address": "10.20.4.25",
+     "driver_name": "HP Universal Printing PCL 6",
+     "port_name": "IP_10.20.4.25"
+    }
+   ],
+   "blocked_reason": "Adding a TCP/IP printer requires administrator rights.",
+   "warnings": [],
+   "notes": [
+    "Recreate a TCP/IP port for 10.20.4.25 and add the printer only if the driver \"HP Universal Printing PCL 6\" is already installed on the destination.",
+    "Drivers are never installed or copied automatically."
+   ]
+  },
+  {
+   "id": "printer:printer:machine:__printsrv01_finance-color",
+   "item_id": "printer:machine:__printsrv01_finance-color",
+   "category": "printers",
+   "display_name": "\\\\printsrv01\\Finance-Color",
+   "source_user": null,
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "\\\\printsrv01\\Finance-Color",
+   "files": 0,
+   "bytes": 0,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [
+    {
+     "type": "connect_shared_printer",
+     "unc_path": "\\\\printsrv01\\Finance-Color"
+    }
+   ],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Reconnect to \\\\printsrv01\\Finance-Color after confirmation. Windows may download the driver from the print server per its policy."
+   ]
+  },
+  {
+   "id": "printer:printer:machine:brother_hl-l2350dw",
+   "item_id": "printer:machine:brother_hl-l2350dw",
+   "category": "printers",
+   "display_name": "Brother HL-L2350DW",
+   "source_user": null,
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": null,
+   "files": 0,
+   "bytes": 0,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [
+    {
+     "type": "manual_checklist",
+     "text": "Connect \"Brother HL-L2350DW\" (Usb) and install driver \"Brother HL-L2350D series\" from the manufacturer; print a test page."
+    }
+   ],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Connect the device to the destination PC and install the manufacturer's driver. A checklist is included in the report."
+   ]
+  },
+  {
+   "id": "restore:plugin-office-templates:S-1-5-21-1004336348-1177238915-682003330-1104:0",
+   "item_id": "plugin-office-templates:S-1-5-21-1004336348-1177238915-682003330-1104:0",
+   "category": "application_settings",
+   "display_name": "Microsoft Office templates & custom dictionary (Templates)",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\AppData\\Roaming\\Microsoft\\Templates",
+   "files": 2,
+   "bytes": 792000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Close Word before restoring Normal.dotm.",
+    "Templates with macros (.dotm) may be blocked by the destination's macro policy."
+   ]
+  },
+  {
+   "id": "restore:plugin-office-templates:S-1-5-21-1004336348-1177238915-682003330-1104:1",
+   "item_id": "plugin-office-templates:S-1-5-21-1004336348-1177238915-682003330-1104:1",
+   "category": "application_settings",
+   "display_name": "Microsoft Office templates & custom dictionary (UProof)",
+   "source_user": "CONTOSO\\ann",
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": "C:\\Users\\annexample\\AppData\\Roaming\\Microsoft\\UProof",
+   "files": 1,
+   "bytes": 648000,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": true,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Close Word before restoring Normal.dotm.",
+    "Templates with macros (.dotm) may be blocked by the destination's macro policy."
+   ]
+  },
+  {
+   "id": "restore:inventory:machine:applications",
+   "item_id": "inventory:machine:applications",
+   "category": "installed_applications",
+   "display_name": "Installed applications inventory (7 apps)",
+   "source_user": null,
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": null,
+   "files": 0,
+   "bytes": 0,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": false,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Inventory only: included in reports, nothing is written to this PC.",
+    "Reinstall applications on the destination from their official sources, then restore settings plug-ins."
+   ]
+  },
+  {
+   "id": "restore:inventory:machine:machine",
+   "item_id": "inventory:machine:machine",
+   "category": "system_inventory",
+   "display_name": "Computer inventory",
+   "source_user": null,
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": null,
+   "files": 0,
+   "bytes": 0,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": false,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Inventory only: included in reports, nothing is written to this PC.",
+    "Reference only. Used in reports to compare source and destination PCs."
+   ]
+  },
+  {
+   "id": "restore:inventory:machine:profiles",
+   "item_id": "inventory:machine:profiles",
+   "category": "system_inventory",
+   "display_name": "User profile list",
+   "source_user": null,
+   "target_user": "AzureAD\\AnnExample",
+   "target_path": null,
+   "files": 0,
+   "bytes": 0,
+   "conflicts": 0,
+   "policy": "skip_existing",
+   "requires_admin": false,
+   "requires_confirmation": false,
+   "system_changes": [],
+   "blocked_reason": null,
+   "warnings": [],
+   "notes": [
+    "Inventory only: included in reports, nothing is written to this PC."
+   ]
+  }
+ ],
+ "total_bytes": 1931952000,
+ "total_files": 40,
+ "total_conflicts": 3,
+ "target_free_bytes": 28053757952,
+ "warnings": []
+}

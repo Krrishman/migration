@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens (RGB triplets for Tailwind alpha support). Restrained blue
+   accent with a teal secondary; contrast checked for WCAG AA on both themes. */
+:root {
+  --bg: 245 247 250;
+  --surface: 255 255 255;
+  --surface-2: 238 242 246;
+  --border: 214 222 230;
+  --fg: 20 33 43;
+  --muted: 84 99 112;
+  --accent: 15 108 189;
+  --accent-fg: 255 255 255;
+  --teal: 13 128 116;
+  --ok: 14 122 79;
+  --warn: 154 91 0;
+  --danger: 180 35 24;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: 14 20 27;
+  --surface: 22 31 41;
+  --surface-2: 30 42 54;
+  --border: 45 59 72;
+  --fg: 230 237 243;
+  --muted: 156 172 187;
+  --accent: 96 168 238;
+  --accent-fg: 8 22 36;
+  --teal: 64 196 178;
+  --ok: 63 191 135;
+  --warn: 232 171 80;
+  --danger: 255 128 118;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-bg text-fg font-sans antialiased;
+  font-size: 14px;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+}

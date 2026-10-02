@@ -1,0 +1,1687 @@
+{
+ "manifest": {
+  "app_version": "0.1.0",
+  "applications": [
+   {
+    "architecture": "x64",
+    "category": "Web browser",
+    "description": "Web browser by Google.",
+    "display_name": "Google Chrome",
+    "install_date": "20240520",
+    "install_location": "C:\\Program Files\\Google\\Chrome\\Application",
+    "publisher": "Google LLC",
+    "scope": "Machine",
+    "settings_plugin": "browser-chrome",
+    "uninstall_command": "\"C:\\Program Files\\Google\\Chrome\\Application\\125.0.6422.142\\Installer\\setup.exe\" --uninstall --system-level",
+    "version": "125.0.6422.142"
+   },
+   {
+    "architecture": "x64",
+    "category": "Productivity",
+    "description": "Microsoft Office apps (Word, Excel, PowerPoint, Outlook).",
+    "display_name": "Microsoft 365 Apps for enterprise - en-us",
+    "install_date": null,
+    "install_location": "C:\\Program Files\\Microsoft Office",
+    "publisher": "Microsoft Corporation",
+    "scope": "Machine",
+    "settings_plugin": "office-templates",
+    "uninstall_command": "\"C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeClickToRun.exe\" scenario=install",
+    "version": "16.0.17531.20152"
+   },
+   {
+    "architecture": "x64",
+    "category": "Web browser",
+    "description": "Open-source web browser by Mozilla.",
+    "display_name": "Mozilla Firefox (x64 en-US)",
+    "install_date": null,
+    "install_location": "C:\\Program Files\\Mozilla Firefox",
+    "publisher": "Mozilla",
+    "scope": "Machine",
+    "settings_plugin": "browser-firefox",
+    "uninstall_command": "\"C:\\Program Files\\Mozilla Firefox\\uninstall\\helper.exe\"",
+    "version": "126.0.1"
+   },
+   {
+    "architecture": "x64",
+    "category": "Utilities",
+    "description": "File archiver.",
+    "display_name": "7-Zip 23.01 (x64)",
+    "install_date": "20231102",
+    "install_location": "C:\\Program Files\\7-Zip\\",
+    "publisher": "Igor Pavlov",
+    "scope": "Machine",
+    "settings_plugin": null,
+    "uninstall_command": "\"C:\\Program Files\\7-Zip\\Uninstall.exe\"",
+    "version": "23.01"
+   },
+   {
+    "architecture": "x86",
+    "category": "Other",
+    "description": null,
+    "display_name": "Contoso Expense Client",
+    "install_date": "20220915",
+    "install_location": null,
+    "publisher": "Contoso Ltd.",
+    "scope": "Machine",
+    "settings_plugin": null,
+    "uninstall_command": "MsiExec.exe /X{6C2B0B8E-1111-2222-3333-444455556666}",
+    "version": "4.2.0"
+   },
+   {
+    "architecture": "x64",
+    "category": "Runtime",
+    "description": "Runtime library required by other applications; usually installed automatically.",
+    "display_name": "Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.38.33135",
+    "install_date": "20240110",
+    "install_location": null,
+    "publisher": "Microsoft Corporation",
+    "scope": "Machine",
+    "settings_plugin": null,
+    "uninstall_command": null,
+    "version": "14.38.33135.0"
+   },
+   {
+    "architecture": "x64",
+    "category": "Communication",
+    "description": "Video meetings client.",
+    "display_name": "Zoom Workplace",
+    "install_date": "20240601",
+    "install_location": null,
+    "publisher": "Zoom Video Communications, Inc.",
+    "scope": "Current user",
+    "settings_plugin": null,
+    "uninstall_command": null,
+    "version": "6.0.11"
+   }
+  ],
+  "browser_profiles": [
+   {
+    "browser": "chrome",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "path": "C:\\Users\\ann\\AppData\\Local\\Google\\Chrome\\User Data\\Default",
+    "profile_dir": "Default",
+    "profile_name": "Ann (Work)",
+    "size_bytes": 64008000
+   },
+   {
+    "browser": "chrome",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "path": "C:\\Users\\ann\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 1",
+    "profile_dir": "Profile 1",
+    "profile_name": "Personal",
+    "size_bytes": 21648000
+   },
+   {
+    "browser": "edge",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "path": "C:\\Users\\ann\\AppData\\Local\\Microsoft\\Edge\\User Data\\Default",
+    "profile_dir": "Default",
+    "profile_name": "Profile 1",
+    "size_bytes": 22344000
+   },
+   {
+    "browser": "firefox",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "path": "C:\\Users\\ann\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\x7k2.default-release",
+    "profile_dir": "x7k2.default-release",
+    "profile_name": "default-release",
+    "size_bytes": 296736000
+   }
+  ],
+  "bundle_id": "6a7a9246-b79e-4d8e-bdb0-a698a2082855",
+  "capacity": {
+   "destination_free_bytes": 28053221376,
+   "destination_total_bytes": 270553174016,
+   "estimated_bundle_bytes": 1560696000,
+   "source_free_bytes": 28054630400,
+   "source_total_bytes": null
+  },
+  "completed_at": "2026-10-02T19:55:46.418799261Z",
+  "created_at": "2026-10-02T19:55:46.116661304Z",
+  "destination_root": "E:",
+  "elevated": false,
+  "encryption": {
+   "algorithm": null,
+   "chunk_size": null,
+   "enabled": false,
+   "kdf": null,
+   "key_check": null
+  },
+  "exclusions": [
+   {
+    "pattern": "C:\\Windows",
+    "reason": "Operating system or program files are never migrated"
+   },
+   {
+    "pattern": "C:\\Program Files",
+    "reason": "Operating system or program files are never migrated"
+   },
+   {
+    "pattern": "C:\\Program Files (x86)",
+    "reason": "Operating system or program files are never migrated"
+   },
+   {
+    "pattern": "pagefile.sys",
+    "reason": "Windows system file (page/hibernation/swap)"
+   },
+   {
+    "pattern": "hiberfil.sys",
+    "reason": "Windows system file (page/hibernation/swap)"
+   },
+   {
+    "pattern": "swapfile.sys",
+    "reason": "Windows system file (page/hibernation/swap)"
+   },
+   {
+    "pattern": "dumpstack.log.tmp",
+    "reason": "Windows system file (page/hibernation/swap)"
+   },
+   {
+    "pattern": "$recycle.bin/",
+    "reason": "Recycle Bin contents"
+   },
+   {
+    "pattern": "recycler/",
+    "reason": "Recycle Bin contents"
+   },
+   {
+    "pattern": "recycled/",
+    "reason": "Recycle Bin contents"
+   },
+   {
+    "pattern": "system volume information/",
+    "reason": "Recycle Bin contents"
+   },
+   {
+    "pattern": "temp/",
+    "reason": "Temporary files"
+   },
+   {
+    "pattern": "tmp/",
+    "reason": "Temporary files"
+   },
+   {
+    "pattern": "$windows.~bt/",
+    "reason": "Temporary files"
+   },
+   {
+    "pattern": "$windows.~ws/",
+    "reason": "Temporary files"
+   },
+   {
+    "pattern": "cache/",
+    "reason": "Cache data (re-created automatically)"
+   },
+   {
+    "pattern": "cache2/",
+    "reason": "Cache data (re-created automatically)"
+   },
+   {
+    "pattern": "code cache/",
+    "reason": "Cache data (re-created automatically)"
+   },
+   {
+    "pattern": "gpucache/",
+    "reason": "Cache data (re-created automatically)"
+   },
+   {
+    "pattern": "shadercache/",
+    "reason": "Cache data (re-created automatically)"
+   },
+   {
+    "pattern": "grshadercache/",
+    "reason": "Cache data (re-created automatically)"
+   },
+   {
+    "pattern": "dawncache/",
+    "reason": "Cache data (re-created automatically)"
+   },
+   {
+    "pattern": "dawngraphitecache/",
+    "reason": "Cache data (re-created automatically)"
+   },
+   {
+    "pattern": "dawnwebgpucache/",
+    "reason": "Cache data (re-created automatically)"
+   },
+   {
+    "pattern": "inetcache/",
+    "reason": "Cache data (re-created automatically)"
+   },
+   {
+    "pattern": "startupcache/",
+    "reason": "Cache data (re-created automatically)"
+   },
+   {
+    "pattern": "thumbnails/",
+    "reason": "Cache data (re-created automatically)"
+   },
+   {
+    "pattern": "crashpad/",
+    "reason": "Cache data (re-created automatically)"
+   },
+   {
+    "pattern": "crash reports/",
+    "reason": "Cache data (re-created automatically)"
+   },
+   {
+    "pattern": "login data",
+    "reason": "Protected/sensitive data is never copied: saved browser passwords"
+   },
+   {
+    "pattern": "login data-journal",
+    "reason": "Protected/sensitive data is never copied: saved browser passwords"
+   },
+   {
+    "pattern": "login data for account",
+    "reason": "Protected/sensitive data is never copied: saved browser passwords"
+   },
+   {
+    "pattern": "login data for account-journal",
+    "reason": "Protected/sensitive data is never copied: saved browser passwords"
+   },
+   {
+    "pattern": "cookies",
+    "reason": "Protected/sensitive data is never copied: browser cookies"
+   },
+   {
+    "pattern": "cookies-journal",
+    "reason": "Protected/sensitive data is never copied: browser cookies"
+   },
+   {
+    "pattern": "safe browsing cookies",
+    "reason": "Protected/sensitive data is never copied: browser cookies"
+   },
+   {
+    "pattern": "web data",
+    "reason": "Protected/sensitive data is never copied: autofill and payment data"
+   },
+   {
+    "pattern": "web data-journal",
+    "reason": "Protected/sensitive data is never copied: autofill and payment data"
+   },
+   {
+    "pattern": "account web data",
+    "reason": "Protected/sensitive data is never copied: account tokens"
+   },
+   {
+    "pattern": "local state",
+    "reason": "Protected/sensitive data is never copied: browser encryption key container"
+   },
+   {
+    "pattern": "secure preferences",
+    "reason": "Protected/sensitive data is never copied: machine-bound protected preferences"
+   },
+   {
+    "pattern": "trust tokens",
+    "reason": "Protected/sensitive data is never copied: auth tokens"
+   },
+   {
+    "pattern": "trust tokens-journal",
+    "reason": "Protected/sensitive data is never copied: auth tokens"
+   },
+   {
+    "pattern": "token service",
+    "reason": "Protected/sensitive data is never copied: auth tokens"
+   },
+   {
+    "pattern": "sync data",
+    "reason": "Protected/sensitive data is never copied: account sync tokens"
+   },
+   {
+    "pattern": "affiliation database",
+    "reason": "Protected/sensitive data is never copied: credential affiliation data"
+   },
+   {
+    "pattern": "passkeys",
+    "reason": "Protected/sensitive data is never copied: passkeys"
+   },
+   {
+    "pattern": "logins.json",
+    "reason": "Protected/sensitive data is never copied: saved browser passwords"
+   },
+   {
+    "pattern": "logins-backup.json",
+    "reason": "Protected/sensitive data is never copied: saved browser passwords"
+   },
+   {
+    "pattern": "key3.db",
+    "reason": "Protected/sensitive data is never copied: browser key database"
+   },
+   {
+    "pattern": "key4.db",
+    "reason": "Protected/sensitive data is never copied: browser key database"
+   },
+   {
+    "pattern": "cert9.db",
+    "reason": "Protected/sensitive data is never copied: certificate/key database"
+   },
+   {
+    "pattern": "cert8.db",
+    "reason": "Protected/sensitive data is never copied: certificate/key database"
+   },
+   {
+    "pattern": "signons.sqlite",
+    "reason": "Protected/sensitive data is never copied: saved browser passwords"
+   },
+   {
+    "pattern": "cookies.sqlite",
+    "reason": "Protected/sensitive data is never copied: browser cookies"
+   },
+   {
+    "pattern": "cookies.sqlite-wal",
+    "reason": "Protected/sensitive data is never copied: browser cookies"
+   },
+   {
+    "pattern": "formhistory.sqlite",
+    "reason": "Protected/sensitive data is never copied: form/autofill history"
+   },
+   {
+    "pattern": "signedinuser.json",
+    "reason": "Protected/sensitive data is never copied: account sign-in token"
+   },
+   {
+    "pattern": "sessionstore.jsonlz4",
+    "reason": "Protected/sensitive data is never copied: session state"
+   },
+   {
+    "pattern": "sessioncheckpoints.json",
+    "reason": "Protected/sensitive data is never copied: session state"
+   },
+   {
+    "pattern": "pkcs11.txt",
+    "reason": "Protected/sensitive data is never copied: security module configuration"
+   },
+   {
+    "pattern": "id_rsa",
+    "reason": "Protected/sensitive data is never copied: private key"
+   },
+   {
+    "pattern": "id_ed25519",
+    "reason": "Protected/sensitive data is never copied: private key"
+   },
+   {
+    "pattern": "id_ecdsa",
+    "reason": "Protected/sensitive data is never copied: private key"
+   },
+   {
+    "pattern": "id_dsa",
+    "reason": "Protected/sensitive data is never copied: private key"
+   },
+   {
+    "pattern": "ntuser.dat",
+    "reason": "Protected/sensitive data is never copied: registry hive (contains protected data)"
+   },
+   {
+    "pattern": "ntuser.dat.log1",
+    "reason": "Protected/sensitive data is never copied: registry hive"
+   },
+   {
+    "pattern": "ntuser.dat.log2",
+    "reason": "Protected/sensitive data is never copied: registry hive"
+   },
+   {
+    "pattern": "usrclass.dat",
+    "reason": "Protected/sensitive data is never copied: registry hive"
+   },
+   {
+    "pattern": "*.pfx",
+    "reason": "Protected/sensitive data is never copied: private key/certificate bundle (export via Certificate Manager instead)"
+   },
+   {
+    "pattern": "*.p12",
+    "reason": "Protected/sensitive data is never copied: private key/certificate bundle (export via Certificate Manager instead)"
+   },
+   {
+    "pattern": "*.ppk",
+    "reason": "Protected/sensitive data is never copied: private key"
+   },
+   {
+    "pattern": "*.kdbx",
+    "reason": "Protected/sensitive data is never copied: password manager database (move with the password manager's own export)"
+   },
+   {
+    "pattern": "*.rdg",
+    "reason": "Protected/sensitive data is never copied: saved remote desktop credentials"
+   },
+   {
+    "pattern": "sessions/",
+    "reason": "Protected/sensitive data is never copied: browser session state"
+   },
+   {
+    "pattern": "session storage/",
+    "reason": "Protected/sensitive data is never copied: browser session state"
+   },
+   {
+    "pattern": "local storage/",
+    "reason": "Protected/sensitive data is never copied: site storage that may hold tokens"
+   },
+   {
+    "pattern": "indexeddb/",
+    "reason": "Protected/sensitive data is never copied: site storage that may hold tokens"
+   },
+   {
+    "pattern": "service worker/",
+    "reason": "Protected/sensitive data is never copied: site storage"
+   },
+   {
+    "pattern": "network/",
+    "reason": "Protected/sensitive data is never copied: browser network state including cookies"
+   },
+   {
+    "pattern": "webstorage/",
+    "reason": "Protected/sensitive data is never copied: site storage"
+   },
+   {
+    "pattern": "storage/",
+    "reason": "Protected/sensitive data is never copied: site storage"
+   },
+   {
+    "pattern": ".ssh/",
+    "reason": "Protected/sensitive data is never copied: SSH private keys"
+   },
+   {
+    "pattern": ".gnupg/",
+    "reason": "Protected/sensitive data is never copied: GPG private keys"
+   },
+   {
+    "pattern": "appdata/roaming/microsoft/credentials/",
+    "reason": "Protected/sensitive data is never copied: Windows Credential Manager"
+   },
+   {
+    "pattern": "appdata/local/microsoft/credentials/",
+    "reason": "Protected/sensitive data is never copied: Windows Credential Manager"
+   },
+   {
+    "pattern": "appdata/roaming/microsoft/protect/",
+    "reason": "Protected/sensitive data is never copied: DPAPI master keys"
+   },
+   {
+    "pattern": "appdata/local/microsoft/vault/",
+    "reason": "Protected/sensitive data is never copied: Windows Vault"
+   },
+   {
+    "pattern": "appdata/roaming/microsoft/vault/",
+    "reason": "Protected/sensitive data is never copied: Windows Vault"
+   },
+   {
+    "pattern": "appdata/roaming/microsoft/crypto/",
+    "reason": "Protected/sensitive data is never copied: private key containers"
+   },
+   {
+    "pattern": "appdata/roaming/microsoft/systemcertificates/my/",
+    "reason": "Protected/sensitive data is never copied: personal certificates/private keys"
+   },
+   {
+    "pattern": "appdata/local/microsoft/identitycache/",
+    "reason": "Protected/sensitive data is never copied: identity tokens"
+   },
+   {
+    "pattern": "appdata/local/microsoft/tokenbroker/",
+    "reason": "Protected/sensitive data is never copied: auth tokens"
+   },
+   {
+    "pattern": "appdata/local/packages/microsoft.aad.brokerplugin_cw5n1h2txyewy/",
+    "reason": "Protected/sensitive data is never copied: Azure AD tokens"
+   },
+   {
+    "pattern": "programdata/microsoft/wlansvc/",
+    "reason": "Protected/sensitive data is never copied: Wi-Fi profiles and keys"
+   },
+   {
+    "pattern": "programdata/microsoft/crypto/",
+    "reason": "Protected/sensitive data is never copied: machine private keys"
+   },
+   {
+    "pattern": "windows/system32/config/",
+    "reason": "Protected/sensitive data is never copied: registry hives"
+   },
+   {
+    "pattern": "symbolic links and junctions",
+    "reason": "Reparse points are never followed (loop and scope protection)"
+   },
+   {
+    "pattern": "cloud-only placeholders",
+    "reason": "Online-only files are not downloaded; they stay in the cloud service"
+   }
+  ],
+  "integrity": {
+   "bundle_root_hash": "d158ff8ed824ba13f1e088bd93ce5be113d116adaafa5fe7c8d76e1f68c2abee",
+   "hash_algorithm": "SHA-256",
+   "mismatches": 0,
+   "strategy": "per-file SHA-256 of stored bytes (hashed during write and re-read after write); per-module sha256sum lists; manifest records list digests and a bundle root hash over them",
+   "total_bytes": 1560696000,
+   "total_files": 43,
+   "verified": true,
+   "verified_at": "2026-10-02T19:55:46.418777305Z"
+  },
+  "items": [
+   {
+    "bundle_path": "inventory/machine.json",
+    "capture_status": "captured",
+    "captured_bytes": 0,
+    "captured_files": 1,
+    "category": "system_inventory",
+    "display_name": "Computer inventory",
+    "estimated_size": null,
+    "hash_list": "hashes/inventory-55c4b8c6a684bb7c.sha256",
+    "hash_list_sha256": "a89b8d81704c90aab4fa19b8df4c327da6518e4599fdc347fa6ffdb5a6b41cad",
+    "hash_status": "verified",
+    "id": "inventory:machine:machine",
+    "owner": null,
+    "profile_relative": null,
+    "restore_kind": {
+     "name": "machine",
+     "type": "inventory"
+    },
+    "restore_notes": [
+     "Reference only. Used in reports to compare source and destination PCs."
+    ],
+    "skipped_files": 0,
+    "source_path": "Windows system information",
+    "support": "inventory_only",
+    "warnings": []
+   },
+   {
+    "bundle_path": "inventory/profiles.json",
+    "capture_status": "captured",
+    "captured_bytes": 0,
+    "captured_files": 1,
+    "category": "system_inventory",
+    "display_name": "User profile list",
+    "estimated_size": null,
+    "hash_list": "hashes/inventory-b69363d60cb549f2.sha256",
+    "hash_list_sha256": "1c5482a5fae0c75995adf580f732fe69988b74cf2110bfd6bf14bb97ddef043d",
+    "hash_status": "verified",
+    "id": "inventory:machine:profiles",
+    "owner": null,
+    "profile_relative": null,
+    "restore_kind": {
+     "name": "profiles",
+     "type": "inventory"
+    },
+    "restore_notes": [],
+    "skipped_files": 0,
+    "source_path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\ProfileList",
+    "support": "inventory_only",
+    "warnings": [
+     {
+      "code": "privacy_sensitive",
+      "message": "Last-use times are shown for planning only and are labelled with a confidence level.",
+      "severity": "info"
+     }
+    ]
+   },
+   {
+    "bundle_path": "users/ann/files/Documents",
+    "capture_status": "captured",
+    "captured_bytes": 353520000,
+    "captured_files": 4,
+    "category": "users_files",
+    "display_name": "Documents",
+    "estimated_size": 353520000,
+    "hash_list": "hashes/folder-21e11289a9b91315.sha256",
+    "hash_list_sha256": "96f41a8d00a4ca6338d028f86bd00004edeff61eb452345402cfec2bc32e6192",
+    "hash_status": "verified",
+    "id": "folder:S-1-5-21-1004336348-1177238915-682003330-1104:documents",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "Documents",
+    "restore_kind": {
+     "folder": "documents",
+     "type": "known_folder"
+    },
+    "restore_notes": [
+     "Restored into the destination user's Documents folder (respecting its redirection)."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\Documents",
+    "support": "supported",
+    "warnings": [
+     {
+      "code": "sensitive_excluded",
+      "message": "2 protected item(s) (credentials, keys, cookies or tokens) are excluded automatically.",
+      "severity": "info"
+     }
+    ]
+   },
+   {
+    "bundle_path": "users/ann/files/Downloads",
+    "capture_status": "captured",
+    "captured_bytes": 393216000,
+    "captured_files": 1,
+    "category": "users_files",
+    "display_name": "Downloads",
+    "estimated_size": 393216000,
+    "hash_list": "hashes/folder-3d0ade6a07e5cd44.sha256",
+    "hash_list_sha256": "692870d324fde26aed3359ee02ce3ca005a99b42fb4fb8cf468340bf9e906147",
+    "hash_status": "verified",
+    "id": "folder:S-1-5-21-1004336348-1177238915-682003330-1104:downloads",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "Downloads",
+    "restore_kind": {
+     "folder": "downloads",
+     "type": "known_folder"
+    },
+    "restore_notes": [
+     "Restored into the destination user's Downloads folder (respecting its redirection)."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\Downloads",
+    "support": "supported",
+    "warnings": [
+     {
+      "code": "large_item",
+      "message": "Downloads often contains large installers that may not need migrating.",
+      "severity": "info"
+     }
+    ]
+   },
+   {
+    "bundle_path": "users/ann/files/Pictures",
+    "capture_status": "captured",
+    "captured_bytes": 246360000,
+    "captured_files": 2,
+    "category": "users_files",
+    "display_name": "Pictures",
+    "estimated_size": 246360000,
+    "hash_list": "hashes/folder-9092a0b72d495e34.sha256",
+    "hash_list_sha256": "c489be197a4d6207e74dfbd51b8c93682492c8c4d9249e5e30f86571ba9346bb",
+    "hash_status": "verified",
+    "id": "folder:S-1-5-21-1004336348-1177238915-682003330-1104:pictures",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "Pictures",
+    "restore_kind": {
+     "folder": "pictures",
+     "type": "known_folder"
+    },
+    "restore_notes": [
+     "Restored into the destination user's Pictures folder (respecting its redirection)."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\Pictures",
+    "support": "supported",
+    "warnings": []
+   },
+   {
+    "bundle_path": "users/ann/files/Videos",
+    "capture_status": "captured",
+    "captured_bytes": 0,
+    "captured_files": 1,
+    "category": "users_files",
+    "display_name": "Videos",
+    "estimated_size": 0,
+    "hash_list": "hashes/folder-741b20382cf7c7c2.sha256",
+    "hash_list_sha256": "6b8e70dc8384c8b87bc722af9dd3651f56423d05f830eba378b055c5660a65e4",
+    "hash_status": "verified",
+    "id": "folder:S-1-5-21-1004336348-1177238915-682003330-1104:videos",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "Videos",
+    "restore_kind": {
+     "folder": "videos",
+     "type": "known_folder"
+    },
+    "restore_notes": [
+     "Restored into the destination user's Videos folder (respecting its redirection)."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\Videos",
+    "support": "supported",
+    "warnings": []
+   },
+   {
+    "bundle_path": "users/ann/files/Music",
+    "capture_status": "captured",
+    "captured_bytes": 192000,
+    "captured_files": 1,
+    "category": "users_files",
+    "display_name": "Music",
+    "estimated_size": 192000,
+    "hash_list": "hashes/folder-92e3dc373a769841.sha256",
+    "hash_list_sha256": "d590ac5ab80066dd51c786679a4397a3c26694bc51f2528adb4e698609dd34a2",
+    "hash_status": "verified",
+    "id": "folder:S-1-5-21-1004336348-1177238915-682003330-1104:music",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "Music",
+    "restore_kind": {
+     "folder": "music",
+     "type": "known_folder"
+    },
+    "restore_notes": [
+     "Restored into the destination user's Music folder (respecting its redirection)."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\Music",
+    "support": "supported",
+    "warnings": []
+   },
+   {
+    "bundle_path": "users/ann/files/Favorites",
+    "capture_status": "captured",
+    "captured_bytes": 1368000,
+    "captured_files": 1,
+    "category": "users_files",
+    "display_name": "Favorites",
+    "estimated_size": 1368000,
+    "hash_list": "hashes/folder-cc58e0456d45a345.sha256",
+    "hash_list_sha256": "5973b6e448ba24feb94c402178770b2245db0f3cffb6c670019a02deaeac5da8",
+    "hash_status": "verified",
+    "id": "folder:S-1-5-21-1004336348-1177238915-682003330-1104:favorites",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "Favorites",
+    "restore_kind": {
+     "folder": "favorites",
+     "type": "known_folder"
+    },
+    "restore_notes": [
+     "Restored into the destination user's Favorites folder (respecting its redirection)."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\Favorites",
+    "support": "supported",
+    "warnings": []
+   },
+   {
+    "bundle_path": "users/ann/files/Desktop",
+    "capture_status": "captured",
+    "captured_bytes": 1200000,
+    "captured_files": 2,
+    "category": "desktop_shortcuts",
+    "display_name": "Desktop",
+    "estimated_size": 1200000,
+    "hash_list": "hashes/folder-7cd7e5a4710a7305.sha256",
+    "hash_list_sha256": "b01bb1d3cbbf37d78494debba6b7573e70f2c775cfef3f2996313b7279cf1cdb",
+    "hash_status": "verified",
+    "id": "folder:S-1-5-21-1004336348-1177238915-682003330-1104:desktop",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "Desktop",
+    "restore_kind": {
+     "folder": "desktop",
+     "type": "known_folder"
+    },
+    "restore_notes": [
+     "Restored into the destination user's Desktop. Shortcuts to applications that are not installed will not work until the app is reinstalled."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\Desktop",
+    "support": "supported",
+    "warnings": []
+   },
+   {
+    "bundle_path": "users/ann/shortcuts/start-menu",
+    "capture_status": "captured",
+    "captured_bytes": 336000,
+    "captured_files": 1,
+    "category": "desktop_shortcuts",
+    "display_name": "Start menu shortcuts (user)",
+    "estimated_size": 336000,
+    "hash_list": "hashes/startmenu-658ff4e549af0964.sha256",
+    "hash_list_sha256": "909e028b19df45fba68fb02bda8f6fe4297066501512becce0257b1c67d78a80",
+    "hash_status": "verified",
+    "id": "startmenu:S-1-5-21-1004336348-1177238915-682003330-1104:programs",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "AppData/Roaming/Microsoft/Windows/Start Menu/Programs",
+    "restore_kind": {
+     "type": "start_menu_shortcuts"
+    },
+    "restore_notes": [
+     "Shortcuts are copied as files. The Windows 11 Start layout and pinned tiles are not restored."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs",
+    "support": "partial",
+    "warnings": [
+     {
+      "code": "version_dependent",
+      "message": "Start menu layout differs between Windows 10 and 11; only shortcut files are migrated.",
+      "severity": "info"
+     }
+    ]
+   },
+   {
+    "bundle_path": "system/public-desktop",
+    "capture_status": "captured",
+    "captured_bytes": 1320000,
+    "captured_files": 1,
+    "category": "desktop_shortcuts",
+    "display_name": "Public Desktop",
+    "estimated_size": 1320000,
+    "hash_list": "hashes/publicdesktop-2f6cd5e1e3459c96.sha256",
+    "hash_list_sha256": "b7425f33ee06a87695edae722ea2031907049741e034e39bb7a9f6ed63f66a57",
+    "hash_status": "verified",
+    "id": "publicdesktop:machine:public",
+    "owner": null,
+    "profile_relative": null,
+    "restore_kind": {
+     "type": "public_desktop"
+    },
+    "restore_notes": [
+     "Writing to the Public Desktop on the destination requires administrator rights."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\Public\\Desktop",
+    "support": "supported",
+    "warnings": []
+   },
+   {
+    "bundle_path": "users/ann/browsers/chrome/Default-e09924bc",
+    "capture_status": "captured",
+    "captured_bytes": 64008000,
+    "captured_files": 5,
+    "category": "browsers",
+    "display_name": "Google Chrome \u2013 Ann (Work) (Default)",
+    "estimated_size": 64008000,
+    "hash_list": "hashes/browser-chrome-e09924bcf3265a55.sha256",
+    "hash_list_sha256": "bbbf3e1e84129e582c15635ba0a584fcefcfa8161572cb43e454b08c5543665b",
+    "hash_status": "verified",
+    "id": "browser-chrome:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_google_chrome_user_data-default",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "AppData/Local/Google/Chrome/User Data/Default",
+    "restore_kind": {
+     "browser": "chrome",
+     "profile_dir": "Default",
+     "type": "browser_profile"
+    },
+    "restore_notes": [
+     "Bookmarks are also exported to an importable bookmarks HTML file on the destination Desktop.",
+     "Saved passwords, cookies and sign-ins are protected by Windows/browser encryption and cannot be migrated. Use the browser's own account sync or password export.",
+     "Extensions may need to be re-enabled or reinstalled from the store."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\AppData\\Local\\Google\\Chrome\\User Data\\Default",
+    "support": "partial",
+    "warnings": [
+     {
+      "code": "credentials_not_migrated",
+      "message": "Saved passwords, cookies, sign-ins and payment data are protected by Windows and the browser and are never copied. Use the browser's account sync.",
+      "severity": "info"
+     },
+     {
+      "code": "sensitive_excluded",
+      "message": "3 protected item(s) (credentials, keys, cookies or tokens) are excluded automatically.",
+      "severity": "info"
+     }
+    ]
+   },
+   {
+    "bundle_path": "users/ann/browsers/chrome/Profile 1-5e3eabf6",
+    "capture_status": "captured",
+    "captured_bytes": 21648000,
+    "captured_files": 2,
+    "category": "browsers",
+    "display_name": "Google Chrome \u2013 Personal (Profile 1)",
+    "estimated_size": 21648000,
+    "hash_list": "hashes/browser-chrome-5e3eabf6dc555f98.sha256",
+    "hash_list_sha256": "416334d4842f1630f841f962fcf47ecff434af2aff5e0b53579e2b7a6d9d150a",
+    "hash_status": "verified",
+    "id": "browser-chrome:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_google_chrome_user_data-profile_1",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "AppData/Local/Google/Chrome/User Data/Profile 1",
+    "restore_kind": {
+     "browser": "chrome",
+     "profile_dir": "Profile 1",
+     "type": "browser_profile"
+    },
+    "restore_notes": [
+     "Bookmarks are also exported to an importable bookmarks HTML file on the destination Desktop.",
+     "Saved passwords, cookies and sign-ins are protected by Windows/browser encryption and cannot be migrated. Use the browser's own account sync or password export.",
+     "Extensions may need to be re-enabled or reinstalled from the store."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 1",
+    "support": "partial",
+    "warnings": [
+     {
+      "code": "credentials_not_migrated",
+      "message": "Saved passwords, cookies, sign-ins and payment data are protected by Windows and the browser and are never copied. Use the browser's account sync.",
+      "severity": "info"
+     }
+    ]
+   },
+   {
+    "bundle_path": "users/ann/browsers/edge/Default-a361943c",
+    "capture_status": "captured",
+    "captured_bytes": 22344000,
+    "captured_files": 2,
+    "category": "browsers",
+    "display_name": "Microsoft Edge \u2013 Profile 1 (Default)",
+    "estimated_size": 22344000,
+    "hash_list": "hashes/browser-edge-a361943c22779265.sha256",
+    "hash_list_sha256": "df55932938c0222e33b1dd3b9434732329fc6cb6affce7d4246f8f98a42b1042",
+    "hash_status": "verified",
+    "id": "browser-edge:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_microsoft_edge_user_data-default",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "AppData/Local/Microsoft/Edge/User Data/Default",
+    "restore_kind": {
+     "browser": "edge",
+     "profile_dir": "Default",
+     "type": "browser_profile"
+    },
+    "restore_notes": [
+     "Bookmarks are also exported to an importable bookmarks HTML file on the destination Desktop.",
+     "Saved passwords, cookies and sign-ins are protected by Windows/browser encryption and cannot be migrated. Use the browser's own account sync or password export.",
+     "Extensions may need to be re-enabled or reinstalled from the store."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\AppData\\Local\\Microsoft\\Edge\\User Data\\Default",
+    "support": "partial",
+    "warnings": [
+     {
+      "code": "credentials_not_migrated",
+      "message": "Saved passwords, cookies, sign-ins and payment data are protected by Windows and the browser and are never copied. Use the browser's account sync.",
+      "severity": "info"
+     },
+     {
+      "code": "browser_running",
+      "message": "Microsoft Edge is running (msedge.exe). Close it before capture so its databases are consistent. Migration Assistant never closes it without your separate confirmation.",
+      "severity": "warning"
+     }
+    ]
+   },
+   {
+    "bundle_path": "users/ann/browsers/firefox/x7k2.default-release-28e19a86",
+    "capture_status": "captured",
+    "captured_bytes": 296736000,
+    "captured_files": 2,
+    "category": "browsers",
+    "display_name": "Mozilla Firefox \u2013 default-release (x7k2.default-release)",
+    "estimated_size": 296736000,
+    "hash_list": "hashes/browser-firefox-28e19a86deb2764d.sha256",
+    "hash_list_sha256": "7aa7842e34c986271dbe39ce1b3dca1e74ca572ae0841048cfba5f9a73427742",
+    "hash_status": "verified",
+    "id": "browser-firefox:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_roaming_mozilla_firefox-x7k2.default-release",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "AppData/Roaming/Mozilla/Firefox/Profiles/x7k2.default-release",
+    "restore_kind": {
+     "browser": "firefox",
+     "profile_dir": "x7k2.default-release",
+     "type": "browser_profile"
+    },
+    "restore_notes": [
+     "Bookmarks are exported to an importable bookmarks HTML file on the destination Desktop.",
+     "Profile files can be restored into a new or existing Firefox profile while Firefox is closed.",
+     "Saved passwords and sign-ins are not migrated; use Firefox Sync or Firefox's own password export."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\x7k2.default-release",
+    "support": "partial",
+    "warnings": [
+     {
+      "code": "credentials_not_migrated",
+      "message": "Saved passwords, cookies, sign-ins and payment data are protected by Windows and the browser and are never copied. Use the browser's account sync.",
+      "severity": "info"
+     }
+    ]
+   },
+   {
+    "bundle_path": "users/ann/outlook/signatures",
+    "capture_status": "captured",
+    "captured_bytes": 3240000,
+    "captured_files": 3,
+    "category": "outlook_email",
+    "display_name": "Outlook signatures",
+    "estimated_size": 3240000,
+    "hash_list": "hashes/outlook-89962dd3d23eb27c.sha256",
+    "hash_list_sha256": "f76caa2770b87a1891d930e84988c588bf92de1b6a827324bfe5dc230857fc7a",
+    "hash_status": "verified",
+    "id": "outlook:S-1-5-21-1004336348-1177238915-682003330-1104:signatures",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "AppData/Roaming/Microsoft/Signatures",
+    "restore_kind": {
+     "type": "outlook_signatures"
+    },
+    "restore_notes": [
+     "Copied to %APPDATA%\\Microsoft\\Signatures for the mapped user. Re-select default signatures in Outlook > Options > Mail > Signatures.",
+     "New Outlook / Outlook on the web store signatures in the cloud and do not use these files."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\AppData\\Roaming\\Microsoft\\Signatures",
+    "support": "supported",
+    "warnings": []
+   },
+   {
+    "bundle_path": "users/ann/outlook/templates",
+    "capture_status": "captured",
+    "captured_bytes": 480000,
+    "captured_files": 1,
+    "category": "outlook_email",
+    "display_name": "Outlook templates (.oft)",
+    "estimated_size": 480000,
+    "hash_list": "hashes/outlook-5afc3130b142f6d0.sha256",
+    "hash_list_sha256": "c1e459015285fed69e52dc859e25760c0c41f790067b519310872fff90f050bd",
+    "hash_status": "verified",
+    "id": "outlook:S-1-5-21-1004336348-1177238915-682003330-1104:templates",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "AppData/Roaming/Microsoft/Templates",
+    "restore_kind": {
+     "type": "outlook_templates"
+    },
+    "restore_notes": [
+     "Copied as files to the mapped user's Templates folder."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\AppData\\Roaming\\Microsoft\\Templates",
+    "support": "supported",
+    "warnings": []
+   },
+   {
+    "bundle_path": "users/ann/outlook/stationery",
+    "capture_status": "captured",
+    "captured_bytes": 1320000,
+    "captured_files": 1,
+    "category": "outlook_email",
+    "display_name": "Outlook stationery",
+    "estimated_size": 1320000,
+    "hash_list": "hashes/outlook-223fa40838ab8523.sha256",
+    "hash_list_sha256": "5fb417fbc8d9ac949b7ceb61e989648f0e66c7d088426106bdc273c2aec50bff",
+    "hash_status": "verified",
+    "id": "outlook:S-1-5-21-1004336348-1177238915-682003330-1104:stationery",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "AppData/Roaming/Microsoft/Stationery",
+    "restore_kind": {
+     "type": "outlook_stationery"
+    },
+    "restore_notes": [
+     "Copied as files to the mapped user's Stationery folder."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\AppData\\Roaming\\Microsoft\\Stationery",
+    "support": "supported",
+    "warnings": []
+   },
+   {
+    "bundle_path": "inventory/outlook.json",
+    "capture_status": "captured",
+    "captured_bytes": 0,
+    "captured_files": 1,
+    "category": "outlook_email",
+    "display_name": "Outlook mail profile names",
+    "estimated_size": null,
+    "hash_list": "hashes/inventory-c257e9cae2a516cd.sha256",
+    "hash_list_sha256": "23458657c67a9886d170c3b5d1abac8132ec499f4205eb35a82d5822a4b402f9",
+    "hash_status": "verified",
+    "id": "outlook:S-1-5-21-1004336348-1177238915-682003330-1104:profiles",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": null,
+    "restore_kind": {
+     "name": "outlook",
+     "type": "inventory"
+    },
+    "restore_notes": [
+     "Recreate the mail profile by signing in to Outlook on the destination (Autodiscover configures most accounts)."
+    ],
+    "skipped_files": 0,
+    "source_path": "HKCU\\Software\\Microsoft\\Office\\16.0\\Outlook\\Profiles (names only)",
+    "support": "inventory_only",
+    "warnings": []
+   },
+   {
+    "bundle_path": "users/ann/personalization/wallpaper",
+    "capture_status": "captured",
+    "captured_bytes": 49536000,
+    "captured_files": 1,
+    "category": "personalization",
+    "display_name": "Desktop wallpaper",
+    "estimated_size": 49536000,
+    "hash_list": "hashes/wallpaper-861845ac58ceb4e6.sha256",
+    "hash_list_sha256": "dc96ba5f7cb7962b4c39bcfae4a02d694b5a793241d43a2eca12e94265d276b8",
+    "hash_status": "verified",
+    "id": "wallpaper:S-1-5-21-1004336348-1177238915-682003330-1104:current",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "Pictures/Wallpapers",
+    "restore_kind": {
+     "type": "wallpaper"
+    },
+    "restore_notes": [
+     "Image copied to Pictures\\Migrated Wallpaper for the mapped user.",
+     "Applying it as wallpaper writes HKCU\\Control Panel\\Desktop\\WallPaper for the signed-in user only, after confirmation."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\Pictures\\Wallpapers\\aurora.jpg",
+    "support": "partial",
+    "warnings": []
+   },
+   {
+    "bundle_path": "users/ann/personalization/themes",
+    "capture_status": "captured",
+    "captured_bytes": 4032000,
+    "captured_files": 1,
+    "category": "personalization",
+    "display_name": "Saved themes",
+    "estimated_size": 4032000,
+    "hash_list": "hashes/themes-3a30371e012df493.sha256",
+    "hash_list_sha256": "9bcf6a0099bcaed498302398248351db1bb88fafd643583cac295e5b44d13488",
+    "hash_status": "verified",
+    "id": "themes:S-1-5-21-1004336348-1177238915-682003330-1104:custom",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "AppData/Local/Microsoft/Windows/Themes",
+    "restore_kind": {
+     "type": "themes"
+    },
+    "restore_notes": [
+     "Theme files are copied; double-click a .theme file on the destination to apply it."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\AppData\\Local\\Microsoft\\Windows\\Themes",
+    "support": "partial",
+    "warnings": [
+     {
+      "code": "version_dependent",
+      "message": "Theme rendering differs between Windows 10 and 11.",
+      "severity": "info"
+     }
+    ]
+   },
+   {
+    "bundle_path": "system/printers.json",
+    "capture_status": "captured",
+    "captured_bytes": 0,
+    "captured_files": 1,
+    "category": "printers",
+    "display_name": "HP LaserJet 4th Floor",
+    "estimated_size": null,
+    "hash_list": "hashes/inventory-f1afdef4b1be9750.sha256",
+    "hash_list_sha256": "8ed4cdac339b074bf92fa831f62b1244e52f5419e012832b893fcaf21fd9fac1",
+    "hash_status": "verified",
+    "id": "printer:machine:hp_laserjet_4th_floor",
+    "owner": null,
+    "profile_relative": null,
+    "restore_kind": {
+     "type": "printers"
+    },
+    "restore_notes": [
+     "Recreate a TCP/IP port for 10.20.4.25 and add the printer only if the driver \"HP Universal Printing PCL 6\" is already installed on the destination.",
+     "Drivers are never installed or copied automatically."
+    ],
+    "skipped_files": 0,
+    "source_path": "Printer queue: HP LaserJet 4th Floor (port IP_10.20.4.25)",
+    "support": "partial",
+    "warnings": [
+     {
+      "code": "driver_required",
+      "message": "Requires driver \"HP Universal Printing PCL 6\" on the destination PC.",
+      "severity": "info"
+     }
+    ]
+   },
+   {
+    "bundle_path": "system/printers.json",
+    "capture_status": "captured",
+    "captured_bytes": 0,
+    "captured_files": 0,
+    "category": "printers",
+    "display_name": "\\\\printsrv01\\Finance-Color",
+    "estimated_size": null,
+    "hash_list": null,
+    "hash_list_sha256": null,
+    "hash_status": "verified",
+    "id": "printer:machine:__printsrv01_finance-color",
+    "owner": null,
+    "profile_relative": null,
+    "restore_kind": {
+     "type": "printers"
+    },
+    "restore_notes": [
+     "Reconnect to \\\\printsrv01\\Finance-Color after confirmation. Windows may download the driver from the print server per its policy."
+    ],
+    "skipped_files": 0,
+    "source_path": "Printer queue: \\\\printsrv01\\Finance-Color (port \\\\printsrv01\\Finance-Color)",
+    "support": "supported",
+    "warnings": []
+   },
+   {
+    "bundle_path": "system/printers.json",
+    "capture_status": "captured",
+    "captured_bytes": 0,
+    "captured_files": 0,
+    "category": "printers",
+    "display_name": "Brother HL-L2350DW",
+    "estimated_size": null,
+    "hash_list": null,
+    "hash_list_sha256": null,
+    "hash_status": "verified",
+    "id": "printer:machine:brother_hl-l2350dw",
+    "owner": null,
+    "profile_relative": null,
+    "restore_kind": {
+     "type": "printers"
+    },
+    "restore_notes": [
+     "Connect the device to the destination PC and install the manufacturer's driver. A checklist is included in the report."
+    ],
+    "skipped_files": 0,
+    "source_path": "Printer queue: Brother HL-L2350DW (port USB001)",
+    "support": "inventory_only",
+    "warnings": [
+     {
+      "code": "driver_required",
+      "message": "Requires driver \"Brother HL-L2350D series\" on the destination PC.",
+      "severity": "info"
+     }
+    ]
+   },
+   {
+    "bundle_path": "system/network-drives.json",
+    "capture_status": "captured",
+    "captured_bytes": 0,
+    "captured_files": 1,
+    "category": "network_drives",
+    "display_name": "H: \u2192 \\\\fs01.contoso.example\\home$\\ann",
+    "estimated_size": null,
+    "hash_list": "hashes/inventory-99c8b81b7f12b62c.sha256",
+    "hash_list_sha256": "2f10ad7b0790bf413a8955ba740731ba81b3caa90cd4f3e7b1e82746bc215d57",
+    "hash_status": "verified",
+    "id": "drive:machine:h_",
+    "owner": null,
+    "profile_relative": null,
+    "restore_kind": {
+     "type": "mapped_drives"
+    },
+    "restore_notes": [
+     "Recreate H: \u2192 \\\\fs01.contoso.example\\home$\\ann (reconnect at sign-in) after confirmation."
+    ],
+    "skipped_files": 0,
+    "source_path": "H: \\\\fs01.contoso.example\\home$\\ann",
+    "support": "supported",
+    "warnings": [
+     {
+      "code": "credentials_not_migrated",
+      "message": "Saved credentials are not migrated; Windows will ask for them if the share requires it.",
+      "severity": "info"
+     }
+    ]
+   },
+   {
+    "bundle_path": "system/network-drives.json",
+    "capture_status": "captured",
+    "captured_bytes": 0,
+    "captured_files": 0,
+    "category": "network_drives",
+    "display_name": "S: \u2192 \\\\fs01.contoso.example\\shared",
+    "estimated_size": null,
+    "hash_list": null,
+    "hash_list_sha256": null,
+    "hash_status": "verified",
+    "id": "drive:machine:s_",
+    "owner": null,
+    "profile_relative": null,
+    "restore_kind": {
+     "type": "mapped_drives"
+    },
+    "restore_notes": [
+     "Recreate S: \u2192 \\\\fs01.contoso.example\\shared (reconnect at sign-in) after confirmation."
+    ],
+    "skipped_files": 0,
+    "source_path": "S: \\\\fs01.contoso.example\\shared",
+    "support": "supported",
+    "warnings": [
+     {
+      "code": "credentials_not_migrated",
+      "message": "Saved credentials are not migrated; Windows will ask for them if the share requires it.",
+      "severity": "info"
+     }
+    ]
+   },
+   {
+    "bundle_path": "inventory/applications.json",
+    "capture_status": "captured",
+    "captured_bytes": 0,
+    "captured_files": 2,
+    "category": "installed_applications",
+    "display_name": "Installed applications inventory (7 apps)",
+    "estimated_size": null,
+    "hash_list": "hashes/inventory-44616b8e1bc10291.sha256",
+    "hash_list_sha256": "7a21c0f1bbbca5ff1866096f5cc6a857c3ac3c012487a437f8897c78943e8ac4",
+    "hash_status": "verified",
+    "id": "inventory:machine:applications",
+    "owner": null,
+    "profile_relative": null,
+    "restore_kind": {
+     "name": "applications",
+     "type": "inventory"
+    },
+    "restore_notes": [
+     "Reinstall applications on the destination from their official sources, then restore settings plug-ins."
+    ],
+    "skipped_files": 0,
+    "source_path": "HKLM/HKCU ...\\CurrentVersion\\Uninstall (64-bit, 32-bit and per-user)",
+    "support": "inventory_only",
+    "warnings": [
+     {
+      "code": "other",
+      "message": "Uninstall commands are recorded only in the technician report (marked advanced) and are redacted from the shareable summary.",
+      "severity": "info"
+     }
+    ]
+   },
+   {
+    "bundle_path": "users/ann/outlook/pst/38c9550d",
+    "capture_status": "captured",
+    "captured_bytes": 98400000,
+    "captured_files": 1,
+    "category": "outlook_email",
+    "display_name": "Archive 2022.pst (Outlook data file)",
+    "estimated_size": 98400000,
+    "hash_list": "hashes/pst-38c9550d991d71de.sha256",
+    "hash_list_sha256": "fcc11283175c73717d6e5654662609fb8d61058c2406a2262472311a964c2907",
+    "hash_status": "verified",
+    "id": "pst:S-1-5-21-1004336348-1177238915-682003330-1104:archive_2022.pst",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "Documents/Outlook Files",
+    "restore_kind": {
+     "type": "pst_file"
+    },
+    "restore_notes": [
+     "Copied to Documents\\Outlook Files for the mapped user. Open it in Outlook via File > Open & Export > Open Outlook Data File.",
+     "Password-protected PSTs keep their password; Migration Assistant cannot and does not remove it."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\Documents\\Outlook Files\\Archive 2022.pst",
+    "support": "supported",
+    "warnings": []
+   },
+   {
+    "bundle_path": "users/ann/app-settings/office-10caa76b",
+    "capture_status": "captured",
+    "captured_bytes": 792000,
+    "captured_files": 2,
+    "category": "application_settings",
+    "display_name": "Microsoft Office templates & custom dictionary (Templates)",
+    "estimated_size": 792000,
+    "hash_list": "hashes/plugin-office-templates-10caa76b411252d8.sha256",
+    "hash_list_sha256": "b078608f82317ad72f0c16b97e46b67c5c8582941055d08e90374136c7c516e8",
+    "hash_status": "verified",
+    "id": "plugin-office-templates:S-1-5-21-1004336348-1177238915-682003330-1104:0",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "AppData/Roaming/Microsoft/Templates",
+    "restore_kind": {
+     "type": "office_templates"
+    },
+    "restore_notes": [
+     "Close Word before restoring Normal.dotm.",
+     "Templates with macros (.dotm) may be blocked by the destination's macro policy."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\AppData\\Roaming\\Microsoft\\Templates",
+    "support": "partial",
+    "warnings": []
+   },
+   {
+    "bundle_path": "users/ann/app-settings/office-343221f2",
+    "capture_status": "captured",
+    "captured_bytes": 648000,
+    "captured_files": 1,
+    "category": "application_settings",
+    "display_name": "Microsoft Office templates & custom dictionary (UProof)",
+    "estimated_size": 648000,
+    "hash_list": "hashes/plugin-office-templates-343221f201a6e69a.sha256",
+    "hash_list_sha256": "b09005ff0797b09f086bee6c6afe9d433aadbe323e97d898c6afc6a665599f5f",
+    "hash_status": "verified",
+    "id": "plugin-office-templates:S-1-5-21-1004336348-1177238915-682003330-1104:1",
+    "owner": {
+     "account_name": "CONTOSO\\ann",
+     "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+    },
+    "profile_relative": "AppData/Roaming/Microsoft/UProof",
+    "restore_kind": {
+     "type": "office_templates"
+    },
+    "restore_notes": [
+     "Close Word before restoring Normal.dotm.",
+     "Templates with macros (.dotm) may be blocked by the destination's macro policy."
+    ],
+    "skipped_files": 0,
+    "source_path": "C:\\Users\\ann\\AppData\\Roaming\\Microsoft\\UProof",
+    "support": "partial",
+    "warnings": []
+   }
+  ],
+  "log_summary": {
+   "error_count": 0,
+   "errors": [],
+   "info_count": 25,
+   "log_file": "logs/capture.log.jsonl",
+   "warning_count": 0
+  },
+  "mapped_drives": [
+   {
+    "label": "Home",
+    "letter": "H:",
+    "persistent": true,
+    "provider": "Microsoft Windows Network",
+    "status": "Connected",
+    "unc_path": "\\\\fs01.contoso.example\\home$\\ann"
+   },
+   {
+    "label": "Shared",
+    "letter": "S:",
+    "persistent": true,
+    "provider": "Microsoft Windows Network",
+    "status": "Disconnected",
+    "unc_path": "\\\\fs01.contoso.example\\shared"
+   }
+  ],
+  "printers": [
+   {
+    "connection": "network",
+    "driver_name": "HP Universal Printing PCL 6",
+    "driver_version": "61.250.1.24832",
+    "host_address": "10.20.4.25",
+    "is_default": true,
+    "name": "HP LaserJet 4th Floor",
+    "port_name": "IP_10.20.4.25",
+    "port_type": "Standard TCP/IP Port",
+    "share_name": null,
+    "status": "Normal",
+    "unc_path": null
+   },
+   {
+    "connection": "shared",
+    "driver_name": "Xerox Global Print Driver PCL6",
+    "driver_version": "5.887.3.0",
+    "host_address": null,
+    "is_default": false,
+    "name": "\\\\printsrv01\\Finance-Color",
+    "port_name": "\\\\printsrv01\\Finance-Color",
+    "port_type": null,
+    "share_name": "Finance-Color",
+    "status": "Normal",
+    "unc_path": "\\\\printsrv01\\Finance-Color"
+   },
+   {
+    "connection": "usb",
+    "driver_name": "Brother HL-L2350D series",
+    "driver_version": null,
+    "host_address": null,
+    "is_default": false,
+    "name": "Brother HL-L2350DW",
+    "port_name": "USB001",
+    "port_type": "Local Port",
+    "share_name": null,
+    "status": "Offline",
+    "unc_path": null
+   }
+  ],
+  "restore_compatibility_notes": [
+   "Captured from Windows 10 Pro 22H2 (Professional) (build 19045.4529).",
+   "Files restore to any Windows 10/11 PC. Start menu, taskbar and Quick Access layouts are best effort.",
+   "Passwords, cookies, credentials, Wi-Fi keys and application licenses are never part of a bundle.",
+   "Printers need compatible drivers on the destination; drivers are never installed automatically."
+  ],
+  "restore_history": [],
+  "schema_version": "1.0",
+  "selected_modules": [
+   "ApplicationSettings",
+   "Browsers",
+   "DesktopShortcuts",
+   "InstalledApplications",
+   "NetworkDrives",
+   "OutlookEmail",
+   "Personalization",
+   "Printers",
+   "SystemInventory",
+   "UsersFiles"
+  ],
+  "source_machine": {
+   "architecture": "AMD64",
+   "computer_name": "ACCT-PC-07",
+   "device_id": null,
+   "join_name": "CONTOSO",
+   "join_state": "domain",
+   "os_build": "19045.4529",
+   "os_name": "Windows 10 Pro",
+   "os_version": "22H2 (Professional)",
+   "time_zone": "Pacific Standard Time"
+  },
+  "status": "verified",
+  "users": [
+   {
+    "account_name": "CONTOSO\\ann",
+    "bundle_dir": "users/ann",
+    "display_name": "Ann Example",
+    "last_use": "2024-06-03T08:15:00Z",
+    "profile_path": "C:\\Users\\ann",
+    "profile_size": 1904424000,
+    "selected_modules": [
+     "folder:S-1-5-21-1004336348-1177238915-682003330-1104:documents",
+     "folder:S-1-5-21-1004336348-1177238915-682003330-1104:downloads",
+     "folder:S-1-5-21-1004336348-1177238915-682003330-1104:pictures",
+     "folder:S-1-5-21-1004336348-1177238915-682003330-1104:videos",
+     "folder:S-1-5-21-1004336348-1177238915-682003330-1104:music",
+     "folder:S-1-5-21-1004336348-1177238915-682003330-1104:favorites",
+     "folder:S-1-5-21-1004336348-1177238915-682003330-1104:desktop",
+     "startmenu:S-1-5-21-1004336348-1177238915-682003330-1104:programs",
+     "browser-chrome:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_google_chrome_user_data-default",
+     "browser-chrome:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_google_chrome_user_data-profile_1",
+     "browser-edge:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_local_microsoft_edge_user_data-default",
+     "browser-firefox:S-1-5-21-1004336348-1177238915-682003330-1104:_home_user_migration_fixtures_source-pc_users_ann_appdata_roaming_mozilla_firefox-x7k2.default-release",
+     "outlook:S-1-5-21-1004336348-1177238915-682003330-1104:signatures",
+     "outlook:S-1-5-21-1004336348-1177238915-682003330-1104:templates",
+     "outlook:S-1-5-21-1004336348-1177238915-682003330-1104:stationery",
+     "outlook:S-1-5-21-1004336348-1177238915-682003330-1104:profiles",
+     "wallpaper:S-1-5-21-1004336348-1177238915-682003330-1104:current",
+     "themes:S-1-5-21-1004336348-1177238915-682003330-1104:custom",
+     "pst:S-1-5-21-1004336348-1177238915-682003330-1104:archive_2022.pst",
+     "plugin-office-templates:S-1-5-21-1004336348-1177238915-682003330-1104:0",
+     "plugin-office-templates:S-1-5-21-1004336348-1177238915-682003330-1104:1"
+    ],
+    "sid": "S-1-5-21-1004336348-1177238915-682003330-1104"
+   }
+  ]
+ },
+ "suggested_mappings": [
+  {
+   "source_sid": "S-1-5-21-1004336348-1177238915-682003330-1104",
+   "target_sid": "S-1-12-1-3456789012-1234567890-987654321-1001"
+  }
+ ],
+ "target": {
+  "computer_name": "ACCT-PC-21",
+  "elevated": false,
+  "free_bytes_system_drive": 28053757952,
+  "os_name": "Windows 11 Pro",
+  "os_version": "23H2 (Professional)",
+  "profiles": [
+   {
+    "access": "accessible",
+    "account_name": "AzureAD\\AnnExample",
+    "display_name": "Ann Example",
+    "is_current_user": true,
+    "is_system_account": false,
+    "last_use": null,
+    "last_use_confidence": "low",
+    "profile_exists": true,
+    "profile_path": "C:\\Users\\annexample",
+    "sid": "S-1-12-1-3456789012-1234567890-987654321-1001",
+    "size_bytes": null
+   }
+  ],
+  "running_processes": [
+   "explorer.exe"
+  ]
+ },
+ "validation": {
+  "bundle_id": "6a7a9246-b79e-4d8e-bdb0-a698a2082855",
+  "bundle_path": "E:\\migrations\\ACCT-PC-07-2026-10-02_195546-6a7a9246",
+  "encrypted": false,
+  "errors": [],
+  "files_checked": 43,
+  "manifest_hash_ok": true,
+  "mismatches": [],
+  "missing": [],
+  "ok": true,
+  "schema_supported": true,
+  "schema_version": "1.0"
+ }
+}

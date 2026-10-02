@@ -36,6 +36,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     std::fs::create_dir_all(&args[1])?;
     let req = CaptureRequest { destination_root: args[1].clone(), selected_item_ids: ids, encryption: EncryptionRequest::default(), options: CaptureOptions::default() };
     let summary = CaptureEngine { platform: &source, sink: Arc::new(NullSink), cancel: CancelToken::new() }.start(&scan, &req)?;
+    // Optional: dump JSON used by the UI mock backend (see scripts/build_mock_data.py).
+    let dump = std::env::var_os("MA_DUMP_DIR").map(PathBuf::from);
+    let write = |name: &str, v: &dyn erased::Json| {
+        if let Some(d) = &dump {
+            std::fs::create_dir_all(d).ok();
+            std::fs::write(d.join(name), v.json()).ok();
+        }
+    };
+    write("scan.json", &scan);
+    write("capture-summary.json", &summary);
     println!("Bundle: {}", summary.bundle_path);
     println!("Status: {:?}, verified: {}, {} files, {}", summary.status, summary.verified, summary.total_files, format_bytes(summary.total_bytes));
     println!("Report: {}", summary.report_html);
@@ -54,9 +64,30 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             passphrase: None,
         };
         let plan = svc.plan(&opened, &req)?;
+        let target_info = svc.target_info()?;
+        write("overview.json", &serde_json::json!({
+            "validation": opened.validation,
+            "manifest": opened.manifest,
+            "target": target_info,
+            "suggested_mappings": req.mappings,
+        }));
+        write("plan.json", &plan);
         println!("Restore plan: {} action(s), {} file(s), {} conflict(s)", plan.actions.len(), plan.total_files, plan.total_conflicts);
         let r = svc.execute(&mut opened, &req)?;
+        write("restore-summary.json", &r);
         println!("Restore: {} — {} written, {} skipped, {} failures. Report: {}", r.outcome, r.files_written, r.files_skipped, r.failures, r.report_html);
     }
     Ok(())
+}
+
+mod erased {
+    /// Tiny object-safe JSON helper for the dump closure.
+    pub trait Json {
+        fn json(&self) -> Vec<u8>;
+    }
+    impl<T: serde::Serialize> Json for T {
+        fn json(&self) -> Vec<u8> {
+            serde_json::to_vec_pretty(self).unwrap_or_default()
+        }
+    }
 }

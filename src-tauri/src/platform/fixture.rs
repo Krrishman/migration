@@ -343,3 +343,17 @@ pub fn open_with_system_handler(path: &Path) -> AppResult<()> {
     let program = "xdg-open";
     std::process::Command::new(program).arg(path).spawn().map(|_| ()).at(path)
 }
+
+/// Open a local file (report) with its default application.
+pub fn open_file_with_system_handler(path: &Path) -> AppResult<()> {
+    if !path.is_file() {
+        return Err(AppError::NotFound(path.display().to_string()));
+    }
+    #[cfg(windows)]
+    let program = "explorer.exe";
+    #[cfg(target_os = "macos")]
+    let program = "open";
+    #[cfg(all(unix, not(target_os = "macos")))]
+    let program = "xdg-open";
+    std::process::Command::new(program).arg(path).spawn().map(|_| ()).at(path)
+}
