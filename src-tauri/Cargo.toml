@@ -1,0 +1,73 @@
+[package]
+name = "migration-assistant"
+version = "0.1.0"
+description = "Migration Assistant - authorized, local-only Windows PC-to-PC profile migration"
+authors = ["Migration Assistant contributors"]
+license = "MIT"
+edition = "2021"
+rust-version = "1.77"
+
+[lib]
+# The `_lib` suffix avoids a name clash with the binary on Windows (Tauri convention).
+name = "migration_assistant_lib"
+crate-type = ["rlib"]
+
+[[bin]]
+name = "migration-assistant"
+path = "src/main.rs"
+required-features = ["desktop"]
+
+[features]
+default = ["desktop"]
+# The desktop feature pulls in Tauri. All domain logic (discovery, capture,
+# restore, security, reporting) compiles and is unit-tested without it, so
+# `cargo test --no-default-features` runs on any OS without WebView toolkits.
+desktop = ["dep:tauri", "dep:tauri-build", "dep:tauri-plugin-dialog"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [], optional = true }
+
+[dependencies]
+tauri = { version = "2", features = [], optional = true }
+tauri-plugin-dialog = { version = "2", optional = true }
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+chrono = { version = "0.4", default-features = false, features = ["clock", "serde", "std"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+sha2 = "0.10"
+hex = "0.4"
+aes-gcm = { version = "0.10", features = ["aes", "alloc", "getrandom", "stream", "zeroize"] }
+argon2 = { version = "0.5", features = ["std"] }
+hkdf = "0.12"
+rand = "0.8"
+zeroize = { version = "1", features = ["derive"] }
+rusqlite = { version = "0.32", features = ["bundled"] }
+sysinfo = { version = "0.32", default-features = false, features = ["system", "disk", "network"] }
+filetime = "0.2"
+parking_lot = "0.12"
+
+[target.'cfg(windows)'.dependencies]
+winreg = "0.52"
+windows-sys = { version = "0.59", features = [
+  "Win32_Foundation",
+  "Win32_Security",
+  "Win32_Security_Authorization",
+  "Win32_Storage_FileSystem",
+  "Win32_System_Threading",
+  "Win32_System_Registry",
+  "Win32_NetworkManagement_NetManagement",
+  "Win32_NetworkManagement_WNet",
+  "Win32_UI_Shell",
+  "Win32_UI_WindowsAndMessaging",
+] }
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true
