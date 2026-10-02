@@ -5,7 +5,7 @@ description = "Migration Assistant - authorized, local-only Windows PC-to-PC pro
 authors = ["Migration Assistant contributors"]
 license = "MIT"
 edition = "2021"
-rust-version = "1.77"
+rust-version = "1.83"
 
 [lib]
 # The `_lib` suffix avoids a name clash with the binary on Windows (Tauri convention).

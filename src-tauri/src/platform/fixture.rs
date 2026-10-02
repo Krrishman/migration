@@ -94,6 +94,9 @@ pub struct FixtureSpec {
     pub long_paths_enabled: Option<bool>,
     #[serde(default)]
     pub printers_unavailable: bool,
+    /// Fixture-relative files that behave as if locked by another process.
+    #[serde(default)]
+    pub locked_files: Vec<String>,
 }
 
 pub struct FixturePlatform {
@@ -102,6 +105,7 @@ pub struct FixturePlatform {
     processes: Mutex<Vec<String>>,
     journal: Mutex<Vec<String>>,
     free_space_override: Mutex<Option<u64>>,
+    locked: Mutex<Vec<String>>,
 }
 
 impl FixturePlatform {
@@ -114,6 +118,7 @@ impl FixturePlatform {
         Ok(Self {
             processes: Mutex::new(spec.processes.clone()),
             free_space_override: Mutex::new(spec.free_space_override),
+            locked: Mutex::new(spec.locked_files.clone()),
             root,
             spec,
             journal: Mutex::new(Vec::new()),
@@ -136,6 +141,11 @@ impl FixturePlatform {
     /// Simulate low disk space (tests).
     pub fn set_free_space(&self, bytes: Option<u64>) {
         *self.free_space_override.lock() = bytes;
+    }
+
+    /// Simulate files locked by another process (fixture-relative paths).
+    pub fn set_locked_files(&self, rels: &[&str]) {
+        *self.locked.lock() = rels.iter().map(|s| s.to_string()).collect();
     }
 
     /// Recorded side effects, e.g. `map_drive Z: \\srv\share persistent=true`.
@@ -272,6 +282,14 @@ impl Platform for FixturePlatform {
 
     fn long_paths_enabled(&self) -> Option<bool> {
         self.spec.long_paths_enabled
+    }
+
+    fn injected_open_error(&self, path: &Path) -> Option<std::io::Error> {
+        let locked = self.locked.lock();
+        locked
+            .iter()
+            .any(|l| crate::security::safe_path::normalize_for_compare(&self.resolve(l)) == crate::security::safe_path::normalize_for_compare(path))
+            .then(|| std::io::Error::new(std::io::ErrorKind::ResourceBusy, "The process cannot access the file because it is being used by another process (simulated)"))
     }
 
     fn printer_driver_installed(&self, driver_name: &str) -> AppResult<bool> {

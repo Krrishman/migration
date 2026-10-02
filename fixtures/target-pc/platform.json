@@ -1,0 +1,33 @@
+{
+  "machine": {
+    "computer_name": "ACCT-PC-21",
+    "os_name": "Windows 11 Pro",
+    "os_version": "23H2 (Professional)",
+    "os_build": "22631.3737",
+    "architecture": "AMD64",
+    "time_zone": "Pacific Standard Time",
+    "join_state": "azure_ad"
+  },
+  "elevated": false,
+  "profiles": [
+    {
+      "sid": "S-1-12-1-3456789012-1234567890-987654321-1001",
+      "account_name": "AzureAD\\AnnExample",
+      "display_name": "Ann Example",
+      "profile_dir": "Users/annexample",
+      "is_current_user": true
+    }
+  ],
+  "public_desktop": "Users/Public/Desktop",
+  "system_roots": [
+    "Windows",
+    "Program Files",
+    "Program Files (x86)"
+  ],
+  "printer_drivers": [
+    "HP Universal Printing PCL 6"
+  ],
+  "processes": [
+    "explorer.exe"
+  ]
+}

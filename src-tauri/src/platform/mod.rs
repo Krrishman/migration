@@ -53,6 +53,11 @@ pub trait Platform: Send + Sync {
     /// Outlook mail profile names (names only, never account data).
     fn outlook_profiles(&self, user: &UserProfile) -> Vec<String>;
     fn long_paths_enabled(&self) -> Option<bool>;
+    /// Test seam: fixture adapters can simulate a file held open by another
+    /// process. The real Windows adapter always returns `None`.
+    fn injected_open_error(&self, _path: &Path) -> Option<std::io::Error> {
+        None
+    }
 
     // ---------- restore side effects (always explicitly confirmed) ----------
     fn printer_driver_installed(&self, driver_name: &str) -> AppResult<bool>;

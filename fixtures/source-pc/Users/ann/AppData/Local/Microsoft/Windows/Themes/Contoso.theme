@@ -1,0 +1,6 @@
+[Theme]
+DisplayName=Contoso
+[Control Panel\Desktop]
+Wallpaper=%USERPROFILE%\Pictures\Wallpapers\aurora.jpg
+[Slideshow]
+ImagesRootPath=%USERPROFILE%\Pictures\Wallpapers

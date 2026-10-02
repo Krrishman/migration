@@ -1,0 +1,233 @@
+{
+  "machine": {
+    "computer_name": "ACCT-PC-07",
+    "os_name": "Windows 10 Pro",
+    "os_version": "22H2 (Professional)",
+    "os_build": "19045.4529",
+    "architecture": "AMD64",
+    "cpu_summary": "Intel(R) Core(TM) i5-8500 CPU @ 3.00GHz",
+    "total_memory_bytes": 17179869184,
+    "time_zone": "Pacific Standard Time",
+    "join_state": "domain",
+    "join_name": "CONTOSO"
+  },
+  "elevated": false,
+  "profiles": [
+    {
+      "sid": "S-1-5-18",
+      "account_name": "NT AUTHORITY\\SYSTEM",
+      "profile_dir": "Windows/System32/config/systemprofile"
+    },
+    {
+      "sid": "S-1-5-21-1004336348-1177238915-682003330-1104",
+      "account_name": "CONTOSO\\ann",
+      "display_name": "Ann Example",
+      "profile_dir": "Users/ann",
+      "is_current_user": true,
+      "last_use": "2024-06-03T08:15:00Z"
+    },
+    {
+      "sid": "S-1-5-21-1004336348-1177238915-682003330-1187",
+      "account_name": "CONTOSO\\bob",
+      "display_name": "Bob Sample",
+      "profile_dir": "Users/bob",
+      "last_use": "2024-02-11T16:40:00Z"
+    },
+    {
+      "sid": "S-1-5-21-1004336348-1177238915-682003330-1203",
+      "account_name": "CONTOSO\\svc-backup",
+      "profile_dir": "Users/svc-backup",
+      "access_denied": true
+    }
+  ],
+  "public_desktop": "Users/Public/Desktop",
+  "system_roots": [
+    "Windows",
+    "Program Files",
+    "Program Files (x86)"
+  ],
+  "wallpapers": {
+    "S-1-5-21-1004336348-1177238915-682003330-1104": "Users/ann/Pictures/Wallpapers/aurora.jpg"
+  },
+  "outlook_profiles": {
+    "S-1-5-21-1004336348-1177238915-682003330-1104": [
+      "Outlook",
+      "Contoso Shared Mailbox"
+    ]
+  },
+  "processes": [
+    "explorer.exe",
+    "msedge.exe",
+    "Teams.exe"
+  ],
+  "long_paths_enabled": false,
+  "installed_apps": [
+    {
+      "display_name": "Google Chrome",
+      "version": "125.0.6422.142",
+      "publisher": "Google LLC",
+      "install_location": "C:\\Program Files\\Google\\Chrome\\Application",
+      "install_date": "20240520",
+      "uninstall_command": "\"C:\\Program Files\\Google\\Chrome\\Application\\125.0.6422.142\\Installer\\setup.exe\" --uninstall --system-level",
+      "architecture": "x64",
+      "scope": "Machine",
+      "category": "",
+      "description": null,
+      "settings_plugin": null
+    },
+    {
+      "display_name": "Microsoft 365 Apps for enterprise - en-us",
+      "version": "16.0.17531.20152",
+      "publisher": "Microsoft Corporation",
+      "install_location": "C:\\Program Files\\Microsoft Office",
+      "install_date": null,
+      "uninstall_command": "\"C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeClickToRun.exe\" scenario=install",
+      "architecture": "x64",
+      "scope": "Machine",
+      "category": "",
+      "description": null,
+      "settings_plugin": null
+    },
+    {
+      "display_name": "Mozilla Firefox (x64 en-US)",
+      "version": "126.0.1",
+      "publisher": "Mozilla",
+      "install_location": "C:\\Program Files\\Mozilla Firefox",
+      "install_date": null,
+      "uninstall_command": "\"C:\\Program Files\\Mozilla Firefox\\uninstall\\helper.exe\"",
+      "architecture": "x64",
+      "scope": "Machine",
+      "category": "",
+      "description": null,
+      "settings_plugin": null
+    },
+    {
+      "display_name": "7-Zip 23.01 (x64)",
+      "version": "23.01",
+      "publisher": "Igor Pavlov",
+      "install_location": "C:\\Program Files\\7-Zip\\",
+      "install_date": "20231102",
+      "uninstall_command": "\"C:\\Program Files\\7-Zip\\Uninstall.exe\"",
+      "architecture": "x64",
+      "scope": "Machine",
+      "category": "",
+      "description": null,
+      "settings_plugin": null
+    },
+    {
+      "display_name": "Contoso Expense Client",
+      "version": "4.2.0",
+      "publisher": "Contoso Ltd.",
+      "install_location": null,
+      "install_date": "20220915",
+      "uninstall_command": "MsiExec.exe /X{6C2B0B8E-1111-2222-3333-444455556666}",
+      "architecture": "x86",
+      "scope": "Machine",
+      "category": "",
+      "description": null,
+      "settings_plugin": null
+    },
+    {
+      "display_name": "Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.38.33135",
+      "version": "14.38.33135.0",
+      "publisher": "Microsoft Corporation",
+      "install_location": null,
+      "install_date": "20240110",
+      "uninstall_command": null,
+      "architecture": "x64",
+      "scope": "Machine",
+      "category": "",
+      "description": null,
+      "settings_plugin": null
+    },
+    {
+      "display_name": "Zoom Workplace",
+      "version": "6.0.11",
+      "publisher": "Zoom Video Communications, Inc.",
+      "install_location": null,
+      "install_date": "20240601",
+      "uninstall_command": null,
+      "architecture": "x64",
+      "scope": "Current user",
+      "category": "",
+      "description": null,
+      "settings_plugin": null
+    }
+  ],
+  "printers": [
+    {
+      "name": "HP LaserJet 4th Floor",
+      "share_name": null,
+      "port_name": "IP_10.20.4.25",
+      "port_type": "Standard TCP/IP Port",
+      "host_address": "10.20.4.25",
+      "unc_path": null,
+      "connection": "network",
+      "driver_name": "HP Universal Printing PCL 6",
+      "driver_version": "61.250.1.24832",
+      "is_default": true,
+      "status": "Normal"
+    },
+    {
+      "name": "\\\\printsrv01\\Finance-Color",
+      "share_name": "Finance-Color",
+      "port_name": "\\\\printsrv01\\Finance-Color",
+      "port_type": null,
+      "host_address": null,
+      "unc_path": "\\\\printsrv01\\Finance-Color",
+      "connection": "shared",
+      "driver_name": "Xerox Global Print Driver PCL6",
+      "driver_version": "5.887.3.0",
+      "is_default": false,
+      "status": "Normal"
+    },
+    {
+      "name": "Brother HL-L2350DW",
+      "share_name": null,
+      "port_name": "USB001",
+      "port_type": "Local Port",
+      "host_address": null,
+      "unc_path": null,
+      "connection": "usb",
+      "driver_name": "Brother HL-L2350D series",
+      "driver_version": null,
+      "is_default": false,
+      "status": "Offline"
+    },
+    {
+      "name": "Microsoft Print to PDF",
+      "share_name": null,
+      "port_name": "PORTPROMPT:",
+      "port_type": "Local Port",
+      "host_address": null,
+      "unc_path": null,
+      "connection": "virtual",
+      "driver_name": "Microsoft Print To PDF",
+      "driver_version": null,
+      "is_default": false,
+      "status": "Normal"
+    }
+  ],
+  "printer_drivers": [
+    "HP Universal Printing PCL 6",
+    "Microsoft Print To PDF"
+  ],
+  "mapped_drives": [
+    {
+      "letter": "H:",
+      "unc_path": "\\\\fs01.contoso.example\\home$\\ann",
+      "provider": "Microsoft Windows Network",
+      "persistent": true,
+      "status": "Connected",
+      "label": "Home"
+    },
+    {
+      "letter": "S:",
+      "unc_path": "\\\\fs01.contoso.example\\shared",
+      "provider": "Microsoft Windows Network",
+      "persistent": true,
+      "status": "Disconnected",
+      "label": "Shared"
+    }
+  ]
+}
